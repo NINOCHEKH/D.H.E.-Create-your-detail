@@ -105,3 +105,14 @@ body::before {
 .animating {
   animation: circuit-flow 1s linear infinite alternate;
 }
+
+.light-streak.paused {
+  opacity: 0 !important;
+  animation: none !important;
+  transition: opacity 7s ease;
+}
+
+.base-grid,
+.light-streak {
+  cursor: pointer;
+}
