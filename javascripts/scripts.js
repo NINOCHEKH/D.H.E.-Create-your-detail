@@ -10,12 +10,12 @@ const d6 = "M 617 57 L 617 92 L 550 92 L 515 113 L 515 147 ";
 const d7 = "M 940 195 L 676 195 L 654 209 L 580 210";
 const d8 = "M -940 195 L 98 195 L 117 177 L 225 177 ";
 const d9 = "M -1300 195 L 126 195 L 146 209 L 224 209 ";
-
+const d10 = "M 701 195 L 684 178 L 565 178";
 function createTwoTechLines() {
   gridGroup.innerHTML = "";
   lightGroup.innerHTML = "";
 
-  [d1, d2, d3, d4, d5, d6, d7, d8, d9].forEach((d, index) => {
+  [d1, d2, d3, d4, d5, d6, d7, d8, d9, d10].forEach((d, index) => {
     const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
     path.setAttribute("d", d);
     path.classList.add("base-grid");
@@ -64,7 +64,7 @@ function pauseLineAnimation(index) {
   targetLine.style.animation = "none";
   targetLine.style.opacity = "0.1";
 
-  console.log(`Линия ${index + 1} остановлена при наведении`);
+  console.log(`Линия ${index + 1}`);
 }
 
 function resumeLineAnimation(index) {

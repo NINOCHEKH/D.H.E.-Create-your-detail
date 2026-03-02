@@ -1,7 +1,7 @@
 :root {
-  --bg-color: #030303; /* Почти черный */
-  --grid-color: #222; /* Темно-серые дорожки */
-  --glow-color: #d946ef; /* Неоновый фиолетовый (Purple) */
+  --bg-color: #030303;
+  --grid-color: #3b3b3b;
+  --glow-color: #d946ef;
   --text-color: #fff;
 }
 
@@ -22,7 +22,7 @@ body {
   overflow: hidden;
 }
 
-body::before {
+/* body::before {
   content: "";
   position: absolute;
   justify-content: center;
@@ -36,7 +36,7 @@ body::before {
   background-size: cover;
   opacity: 0.3;
   z-index: -1;
-}
+} */
 
 /* хед */
 .header {
@@ -103,7 +103,7 @@ body::before {
 }
 
 .animating {
-  animation: circuit-flow 1s linear infinite alternate;
+  animation: circuit-flow 2s linear infinite alternate;
 }
 
 .light-streak.paused {
@@ -114,5 +114,16 @@ body::before {
 
 .base-grid,
 .light-streak {
-  cursor: pointer;
+  pointer-events: all;
+}
+
+.WhiteUp {
+  position: absolute;
+  justify-content: center;
+  left: 20vw;
+  top: 40vw;
+  display: flex;
+  height: 4vw;
+  width: 10vw;
+  background-color: #e0e0e0;
 }
