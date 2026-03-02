@@ -1,0 +1,26 @@
+/* bold*/
+@font-face {
+  font-family: "TTLakesNeueEduBold";
+  src: url("../font/TTLakesNeueEducationalBold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+}
+
+/* medium*/
+@font-face {
+  font-family: "TTLakesNeueEduMedium";
+  src: url("../font/TTLakesNeueEducationalMedium.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+/*regular*/
+@font-face {
+  font-family: "TTLakesNeueEduRegular";
+  src: url("../font/TTLakesNeueEducationalRegular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
+}
