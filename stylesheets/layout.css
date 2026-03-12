@@ -557,7 +557,7 @@ body::before {
 
 .slider__element3 {
   min-width: 100%;
-  flex-shrink: 0;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -663,4 +663,18 @@ body::before {
   z-index: 101;
   top: 15.9vw;
   left: 36.5vw;
+}
+
+/* секции с выбором  */
+.square1 {
+  position: absolute;
+  display: flex;
+  top: 18.6vw;
+  left: 38vw;
+  width: 4.4vw;
+  height: 4.4vw;
+  z-index: 101;
+  border: 0.1vw solid #9d4edd;
+  background-color: #060606;
+  border-radius: 0.6vw;
 }
