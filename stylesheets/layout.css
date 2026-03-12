@@ -23,7 +23,7 @@ body {
   overflow-y: auto;
 }
 
-/* body::before {
+body::before {
   content: "";
   position: absolute;
   justify-content: center;
@@ -37,7 +37,7 @@ body {
   background-size: cover;
   opacity: 0.3;
   z-index: -1;
-} */
+}
 
 /* хед */
 .header {
@@ -431,13 +431,13 @@ body {
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 1vw;
-  z-index: 100;
+  z-index: 101;
 }
 
 .slider__window2 {
   overflow: hidden;
   width: 100%;
-  z-index: 100;
+  z-index: 101;
 }
 
 .slider__list2 {
@@ -447,7 +447,7 @@ body {
   margin: 0;
   transition: transform 0.3s ease-in;
   width: 100%;
-  z-index: 100;
+  z-index: 101;
 }
 
 .slider__element2 {
@@ -456,13 +456,13 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 100;
+  z-index: 101;
 }
 
 .slider__element2 img {
   width: 4vw;
   height: auto;
-  z-index: 100;
+  z-index: 101;
 }
 
 .slider__next2,
@@ -472,7 +472,7 @@ body {
   cursor: pointer;
   padding: 0.5vw;
   z-index: 10;
-  z-index: 100;
+  z-index: 101;
 }
 
 .slider__next2 img,
@@ -480,13 +480,13 @@ body {
   width: 0.8vw;
   height: auto;
   transition: opacity 0.2s;
-  z-index: 100;
+  z-index: 101;
 }
 
 .slider__next2:hover img,
 .slider__prev2:hover img {
   opacity: 0.7;
-  z-index: 100;
+  z-index: 101;
 }
 
 .slider-bottom-text2 {
@@ -517,11 +517,150 @@ body {
 
 .slider-bottom2 {
   position: absolute;
-  top: 36.8vw;
+  top: 36.7vw;
   left: 13.5%;
   z-index: 70;
 }
 .slider-bottom2 img {
   width: 16.6vw;
   height: 7.7vw;
+}
+
+/* очень фиолетовый  */
+.slider3 {
+  position: absolute;
+  top: 475%;
+  left: 13.8%;
+  width: 15.8vw;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1vw;
+  z-index: 101;
+}
+
+.slider__window3 {
+  overflow: hidden;
+  width: 100%;
+  z-index: 101;
+}
+
+.slider__list3 {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  transition: transform 0.3s ease-in;
+  width: 100%;
+  z-index: 101;
+}
+
+.slider__element3 {
+  min-width: 100%;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 101;
+}
+
+.slider__element3 img {
+  width: 4vw;
+  height: auto;
+  z-index: 101;
+}
+
+.slider__next3,
+.slider__prev3 {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5vw;
+  z-index: 10;
+  z-index: 101;
+}
+
+.slider__next3 img,
+.slider__prev3 img {
+  width: 0.8vw;
+  height: auto;
+  transition: opacity 0.2s;
+  z-index: 101;
+}
+
+.slider__next3:hover img,
+.slider__prev3:hover img {
+  opacity: 0.7;
+  z-index: 101;
+}
+
+.slider-bottom-text3 {
+  font-family: "TTLakesNeueEduRegular";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 0.74vw;
+  color: #eeeeee;
+  white-space: nowrap;
+  position: absolute;
+  z-index: 3;
+  top: 0.7vw;
+  left: 1vw;
+}
+
+.slider-bottom-text3-2 {
+  font-family: "TTLakesNeueEduRegular";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 0.74vw;
+  color: #eeeeee;
+  white-space: nowrap;
+  position: absolute;
+  z-index: 3;
+  top: 0.7vw;
+  left: 13vw;
+}
+
+.slider-bottom3 {
+  position: absolute;
+  top: 45.6vw;
+  left: 13.5%;
+  z-index: 70;
+}
+.slider-bottom3 img {
+  width: 16.6vw;
+  height: 7.7vw;
+}
+
+/* анимация кружочков  */
+.circle1 {
+  position: absolute;
+  display: flex;
+  width: 4.8vw;
+  height: 14.9vw;
+  z-index: 101;
+  top: 24.8vw;
+  left: 45.3vw;
+}
+.circle2 {
+  position: absolute;
+  display: flex;
+  width: 4.8vw;
+  height: 27.1vw;
+  z-index: 101;
+  top: 18.6vw;
+  left: 39.1vw;
+}
+.circle3-1,
+.circle3-2,
+.circle3-3,
+.circle3-4,
+.circle3-5,
+.circle3-6 {
+  position: absolute;
+  display: flex;
+  width: 4.8vw;
+  height: 32.66vw;
+  z-index: 101;
+  top: 15.9vw;
+  left: 36.5vw;
 }

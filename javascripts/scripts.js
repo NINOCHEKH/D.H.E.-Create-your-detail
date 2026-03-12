@@ -140,10 +140,10 @@ setInterval(() => {
   launchPulse();
 }, 200);
 
-// FFFF
-// Один обработчик DOMContentLoaded для всего
-document.addEventListener("DOMContentLoaded", function () {
-  console.log("✅ DOM полностью загружен");
+// слайдерыыы
+// Ждем полной загрузки страницы, включая все изображения
+window.addEventListener("load", function () {
+  console.log("✅ Страница полностью загружена");
 
   // Анимация процентов
   const data6 = document.querySelector(".data6");
@@ -163,93 +163,231 @@ document.addEventListener("DOMContentLoaded", function () {
     setInterval(animatePercent, 60);
   }
 
-  // СЛАЙДЕР1;
-  console.log("Инициализация слайдера...");
+  // Подождем немного для гарантии
+  setTimeout(function () {
+    // ===== СЛАЙДЕР 1 =====
+    initSlider1();
 
-  const nextBtn = document.querySelector(".slider__next");
-  const prevBtn = document.querySelector(".slider__prev");
-  const sliderList = document.querySelector(".slider__list");
-  const sliderWindow = document.querySelector(".slider__window");
-  const slides = document.querySelectorAll(".slider__element");
+    // ===== СЛАЙДЕР 2 =====
+    initSlider2();
 
-  // Подробная диагностика
-  console.log("nextBtn найден:", !!nextBtn);
-  console.log("prevBtn найден:", !!prevBtn);
-  console.log("sliderList найден:", !!sliderList);
-  console.log("sliderWindow найден:", !!sliderWindow);
-  console.log("количество слайдов:", slides.length);
+    // ===== СЛАЙДЕР 3 =====
+    initSlider3();
+  }, 500);
+});
+
+// Функция для первого слайдера
+function initSlider1() {
+  console.log("🔍 Поиск элементов слайдера 1...");
+
+  const slider1 = document.querySelector(".slider");
+  if (!slider1) {
+    console.error("❌ Слайдер 1: контейнер .slider не найден");
+    return;
+  }
+
+  const nextBtn = slider1.querySelector(".slider__next");
+  const prevBtn = slider1.querySelector(".slider__prev");
+  const sliderList = slider1.querySelector(".slider__list");
+  const slides = slider1.querySelectorAll(".slider__element");
+
+  console.log("Слайдер 1 найден:", slider1);
+  console.log("nextBtn:", nextBtn);
+  console.log("prevBtn:", prevBtn);
+  console.log("sliderList:", sliderList);
+  console.log("slides:", slides.length);
 
   if (!nextBtn || !prevBtn || !sliderList || slides.length === 0) {
-    console.error("");
-
-    // Попробуем найти элементы по-другому
-    console.log("Поиск всех кнопок:", document.querySelectorAll("button"));
-    console.log("Поиск всех ul:", document.querySelectorAll("ul"));
-    console.log(
-      "Поиск всех .slider__element:",
-      document.querySelectorAll(".slider__element")
-    );
+    console.error("❌ Слайдер 1: элементы не найдены!");
     return;
   }
 
   let currentSlide = 0;
 
   function updateSlider() {
-    if (!sliderList) return;
-    const translateValue = -currentSlide * 100;
-    sliderList.style.transform = `translateX(${translateValue}%)`;
-    console.log(
-      `Слайд ${currentSlide + 1} из ${slides.length}, transform: translateX(${translateValue}%)`
-    );
+    sliderList.style.transform = `translateX(-${currentSlide * 100}%)`;
+    console.log(`Слайдер 1: слайд ${currentSlide + 1} из ${slides.length}`);
   }
 
-  nextBtn.replaceWith(nextBtn.cloneNode(true));
-  prevBtn.replaceWith(prevBtn.cloneNode(true));
+  // Удаляем старые обработчики
+  const newNextBtn = nextBtn.cloneNode(true);
+  const newPrevBtn = prevBtn.cloneNode(true);
+  nextBtn.replaceWith(newNextBtn);
+  prevBtn.replaceWith(newPrevBtn);
 
-  const newNextBtn = document.querySelector(".slider__next, .slider__next2");
-  const newPrevBtn = document.querySelector(".slider__prev, slider__prev2");
+  // Находим новые кнопки
+  const finalNextBtn = slider1.querySelector(".slider__next");
+  const finalPrevBtn = slider1.querySelector(".slider__prev");
 
-  newNextBtn.addEventListener("click", function (e) {
+  finalNextBtn.addEventListener("click", function (e) {
     e.preventDefault();
     e.stopPropagation();
-    console.log("");
+    console.log("👉 Слайдер 1: вперед");
     currentSlide = (currentSlide + 1) % slides.length;
     updateSlider();
   });
 
-  newPrevBtn.addEventListener("click", function (e) {
+  finalPrevBtn.addEventListener("click", function (e) {
     e.preventDefault();
     e.stopPropagation();
-    console.log("");
+    console.log("👈 Слайдер 1: назад");
     currentSlide = (currentSlide - 1 + slides.length) % slides.length;
     updateSlider();
   });
 
   // Клик по слайдам
   slides.forEach((slide, index) => {
-    slide.addEventListener("click", function (e) {
-      e.stopPropagation();
-      console.log(` ${index + 1}`);
+    slide.addEventListener("click", function () {
+      console.log(`🎯 Слайдер 1: слайд ${index + 1}`);
       currentSlide = index;
       updateSlider();
     });
   });
 
-  // Проверим видимость слайдера
-  setTimeout(() => {
-    const slider = document.querySelector(".slider");
-    if (slider) {
-      const rect = slider.getBoundingClientRect();
-      console.log("позиция", rect);
-      console.log("", rect.width, "x", rect.height);
-      console.log(
-        "видно",
-        rect.top < window.innerHeight && rect.bottom > 0 && rect.width > 0
-      );
-    }
-  }, 500);
-
-  // Инициализация
   updateSlider();
-  console.log(" Слайдер инициализирован");
-});
+  console.log("✅ Слайдер 1 инициализирован");
+}
+
+// Функция для второго слайдера
+function initSlider2() {
+  console.log("🔍 Поиск элементов слайдера 2...");
+
+  const slider2 = document.querySelector(".slider2");
+  if (!slider2) {
+    console.error("❌ Слайдер 2: контейнер .slider2 не найден");
+    return;
+  }
+
+  const nextBtn2 = slider2.querySelector(".slider__next2");
+  const prevBtn2 = slider2.querySelector(".slider__prev2");
+  const sliderList2 = slider2.querySelector(".slider__list2");
+  const slides2 = slider2.querySelectorAll(".slider__element2");
+
+  console.log("Слайдер 2 найден:", slider2);
+  console.log("nextBtn2:", nextBtn2);
+  console.log("prevBtn2:", prevBtn2);
+  console.log("sliderList2:", sliderList2);
+  console.log("slides2:", slides2.length);
+
+  if (!nextBtn2 || !prevBtn2 || !sliderList2 || slides2.length === 0) {
+    console.error("❌ Слайдер 2: элементы не найдены!");
+    return;
+  }
+
+  let currentSlide2 = 0;
+
+  function updateSlider2() {
+    sliderList2.style.transform = `translateX(-${currentSlide2 * 100}%)`;
+    console.log(`Слайдер 2: слайд ${currentSlide2 + 1} из ${slides2.length}`);
+  }
+
+  // Удаляем старые обработчики
+  const newNextBtn2 = nextBtn2.cloneNode(true);
+  const newPrevBtn2 = prevBtn2.cloneNode(true);
+  nextBtn2.replaceWith(newNextBtn2);
+  prevBtn2.replaceWith(newPrevBtn2);
+
+  // Находим новые кнопки
+  const finalNextBtn2 = slider2.querySelector(".slider__next2");
+  const finalPrevBtn2 = slider2.querySelector(".slider__prev2");
+
+  finalNextBtn2.addEventListener("click", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log("👉 Слайдер 2: вперед");
+    currentSlide2 = (currentSlide2 + 1) % slides2.length;
+    updateSlider2();
+  });
+
+  finalPrevBtn2.addEventListener("click", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log("👈 Слайдер 2: назад");
+    currentSlide2 = (currentSlide2 - 1 + slides2.length) % slides2.length;
+    updateSlider2();
+  });
+
+  // Клик по слайдам
+  slides2.forEach((slide, index) => {
+    slide.addEventListener("click", function () {
+      console.log(`🎯 Слайдер 2: слайд ${index + 1}`);
+      currentSlide2 = index;
+      updateSlider2();
+    });
+  });
+
+  updateSlider2();
+  console.log("✅ Слайдер 2 инициализирован");
+}
+
+// Функция для третьего слайдера
+function initSlider3() {
+  console.log("🔍 Поиск элементов слайдера 3...");
+
+  const slider3 = document.querySelector(".slider3");
+  if (!slider3) {
+    console.error("❌ Слайдер 3: контейнер .slider3 не найден");
+    return;
+  }
+
+  const nextBtn3 = slider3.querySelector(".slider__next3");
+  const prevBtn3 = slider3.querySelector(".slider__prev3");
+  const sliderList3 = slider3.querySelector(".slider__list3");
+  const slides3 = slider3.querySelectorAll(".slider__element3");
+
+  console.log("Слайдер 3 найден:", slider3);
+  console.log("nextBtn3:", nextBtn3);
+  console.log("prevBtn3:", prevBtn3);
+  console.log("sliderList3:", sliderList3);
+  console.log("slides3:", slides3.length);
+
+  if (!nextBtn3 || !prevBtn3 || !sliderList3 || slides3.length === 0) {
+    console.error("❌ Слайдер 3: элементы не найдены!");
+    return;
+  }
+
+  let currentSlide3 = 0;
+
+  function updateSlider3() {
+    sliderList3.style.transform = `translateX(-${currentSlide3 * 100}%)`;
+    console.log(`Слайдер 3: слайд ${currentSlide3 + 1} из ${slides3.length}`);
+  }
+
+  // Удаляем старые обработчики
+  const newNextBtn3 = nextBtn3.cloneNode(true);
+  const newPrevBtn3 = prevBtn3.cloneNode(true);
+  nextBtn3.replaceWith(newNextBtn3);
+  prevBtn3.replaceWith(newPrevBtn3);
+
+  // Находим новые кнопки
+  const finalNextBtn3 = slider3.querySelector(".slider__next3");
+  const finalPrevBtn3 = slider3.querySelector(".slider__prev3");
+
+  finalNextBtn3.addEventListener("click", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log("👉 Слайдер 3: вперед");
+    currentSlide3 = (currentSlide3 + 1) % slides3.length;
+    updateSlider3();
+  });
+
+  finalPrevBtn3.addEventListener("click", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log("👈 Слайдер 3: назад");
+    currentSlide3 = (currentSlide3 - 1 + slides3.length) % slides3.length;
+    updateSlider3();
+  });
+
+  // Клик по слайдам
+  slides3.forEach((slide, index) => {
+    slide.addEventListener("click", function () {
+      console.log(`🎯 Слайдер 3: слайд ${index + 1}`);
+      currentSlide3 = index;
+      updateSlider3();
+    });
+  });
+
+  updateSlider3();
+  console.log("✅ Слайдер 3 инициализирован");
+}
