@@ -23,22 +23,6 @@ body {
   overflow-y: auto;
 }
 
-body::before {
-  content: "";
-  position: absolute;
-  justify-content: center;
-  align-items: center;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 435%;
-  background-image: url("../images/pic.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  opacity: 0.3;
-  z-index: -1;
-}
-
 /* хед */
 .header {
   position: absolute;
@@ -53,14 +37,6 @@ body::before {
   width: 25vw;
   height: auto;
   max-width: 400px;
-}
-
-.stage {
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 140vh;
-  z-index: -3;
 }
 
 .base-grid {
@@ -88,6 +64,21 @@ body::before {
 .light-streak:hover {
   opacity: 1;
   animation: circuit-flow 1s linear infinite;
+}
+
+.base-grid,
+.light-streak {
+  pointer-events: none;
+}
+
+.stage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 430vh;
+  z-index: -100;
+  pointer-events: none;
 }
 
 /* розовые линии */
@@ -120,7 +111,7 @@ body::before {
 
 .base-grid,
 .light-streak {
-  pointer-events: all; /* Линии не должны перехватывать клики */
+  pointer-events: none;
 }
 
 .First {
@@ -360,6 +351,8 @@ body::before {
   width: 4vw;
   height: auto;
   z-index: 100;
+  transition: all 0.3s;
+  cursor: pointer;
 }
 
 .slider__next,
@@ -368,7 +361,6 @@ body::before {
   border: none;
   cursor: pointer;
   padding: 0.5vw;
-  z-index: 10;
   z-index: 100;
 }
 
@@ -383,8 +375,8 @@ body::before {
 .slider__next:hover img,
 .slider__prev:hover img {
   opacity: 0.7;
-  z-index: 100;
 }
+
 .slider-bottom-text1 {
   font-family: "TTLakesNeueEduRegular";
   font-style: normal;
@@ -463,6 +455,8 @@ body::before {
   width: 4vw;
   height: auto;
   z-index: 101;
+  transition: all 0.3s;
+  cursor: pointer;
 }
 
 .slider__next2,
@@ -471,7 +465,6 @@ body::before {
   border: none;
   cursor: pointer;
   padding: 0.5vw;
-  z-index: 10;
   z-index: 101;
 }
 
@@ -486,7 +479,6 @@ body::before {
 .slider__next2:hover img,
 .slider__prev2:hover img {
   opacity: 0.7;
-  z-index: 101;
 }
 
 .slider-bottom-text2 {
@@ -526,7 +518,7 @@ body::before {
   height: 7.7vw;
 }
 
-/* очень фиолетовый  */
+/* очень фиолетовый слайдер */
 .slider3 {
   position: absolute;
   top: 475%;
@@ -557,7 +549,6 @@ body::before {
 
 .slider__element3 {
   min-width: 100%;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -568,6 +559,8 @@ body::before {
   width: 4vw;
   height: auto;
   z-index: 101;
+  transition: all 0.3s;
+  cursor: pointer;
 }
 
 .slider__next3,
@@ -576,7 +569,6 @@ body::before {
   border: none;
   cursor: pointer;
   padding: 0.5vw;
-  z-index: 10;
   z-index: 101;
 }
 
@@ -591,7 +583,6 @@ body::before {
 .slider__next3:hover img,
 .slider__prev3:hover img {
   opacity: 0.7;
-  z-index: 101;
 }
 
 .slider-bottom-text3 {
@@ -631,7 +622,7 @@ body::before {
   height: 7.7vw;
 }
 
-/* анимация кружочков  */
+/* анимация кружочков */
 .circle1 {
   position: absolute;
   display: flex;
@@ -664,17 +655,1109 @@ body::before {
   top: 15.9vw;
   left: 36.5vw;
 }
+.circle1 img,
+.circle2 img,
+.circle3-1 img,
+.circle3-2 img,
+.circle3-3 img,
+.circle3-4 img,
+.circle3-5 img,
+.circle3-6 img {
+  animation: spin 10s linear infinite;
+  transform-origin: center center;
+  display: block;
+}
 
-/* секции с выбором  */
-.square1 {
+.circle1 img {
+  animation-duration: 30s;
+}
+.circle2 img {
+  animation-duration: 10s;
+}
+.circle3-1 img {
+  animation-duration: 15s;
+}
+.circle3-2 img {
+  animation-duration: 5s;
+  animation-direction: reverse;
+}
+.circle3-3 img {
+  animation-duration: 20s;
+}
+.circle3-4 img {
+  animation-duration: 10s;
+  animation-direction: reverse;
+}
+.circle3-5 img {
+  animation-duration: 5s;
+}
+.circle3-6 img {
+  animation-duration: 15s;
+  animation-direction: reverse;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* квадраты выбора */
+.square1,
+.square2,
+.square3 {
   position: absolute;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 4.5vw;
+  height: 4.5vw;
+  z-index: 101;
+  background-color: rgba(6, 6, 6, 0.9);
+  border-radius: 0.6vw;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+
+.square1 {
   top: 18.6vw;
   left: 38vw;
-  width: 4.4vw;
-  height: 4.4vw;
+  border: 0.02vw solid #9d4edd;
+}
+.square2 {
+  top: 40.5vw;
+  left: 57.63vw;
+  border: 0.02vw solid #cf58dd;
+}
+.square3 {
+  top: 30.05vw;
+  left: 50.58vw;
+  border: 0.02vw solid #7034f2;
+}
+
+.square1 img,
+.square2 img,
+.square3 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* стрелки с анимацией */
+.arrow1,
+.arrow2,
+.arrow3 {
+  position: absolute;
+  display: flex;
+  z-index: 110;
+  animation: bounce 1s ease-in-out infinite;
+  transition: opacity 0.3s ease;
+}
+
+.arrow1 {
+  top: 15.6vw;
+  left: 38.75vw;
+}
+.arrow2 {
+  top: 37.6vw;
+  left: 58.3vw;
+}
+.arrow3 {
+  top: 27.3vw;
+  left: 51.3vw;
+}
+
+.arrow1.hidden,
+.arrow2.hidden,
+.arrow3.hidden {
+  opacity: 0;
+  pointer-events: none;
+  animation: none;
+}
+
+.arrow1 img,
+.arrow2 img,
+.arrow3 img {
+  height: 3vw;
+  width: 3vw;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* библиотека */
+.library {
+  position: absolute;
+  top: 61.2vw;
+  left: 73.75vw;
+  width: 20vw;
+  height: 25vw;
   z-index: 101;
-  border: 0.1vw solid #9d4edd;
-  background-color: #060606;
+}
+
+.library-up-text {
+  font-family: "TTLakesNeueEduRegular";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 0.74vw;
+  color: #7e7e7e;
+  white-space: nowrap;
+  position: absolute;
+  top: 0.76vw;
+  left: 1.8vw;
+  z-index: 103;
+}
+
+.library-pic {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.library-pic img {
+  width: 13.5vw;
+  height: 19.3vw;
+  object-fit: contain;
+}
+
+.amount {
+  font-family: "TTLakesNeueEduRegular";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 0.74vw;
+  color: #7e7e7e;
+  white-space: nowrap;
+  position: absolute;
+  top: 17.5vw;
+  left: 6.2vw;
+  z-index: 103;
+}
+
+.slider-L1 {
+  position: absolute;
+  top: 17.3vw;
+  left: 1.7vw;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1vw;
+  z-index: 102;
+}
+
+.slider-L1 img {
+  width: 0.8vw;
+  height: 1vw;
+}
+
+.slider-L2 {
+  position: absolute;
+  top: 17.3vw;
+  left: 11vw;
+  width: 15.8vw;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1vw;
+  z-index: 102;
+}
+
+.slider-L2 img {
+  width: 0.8vw;
+  height: 1vw;
+}
+
+.slider-L1,
+.sliderL-2 {
+  z-index: 200;
+}
+
+/* кнопка сохранения */
+.save {
+  position: absolute;
+  display: flex;
+  top: 82.9vw;
+  left: 74.56vw;
+  z-index: 101;
+}
+
+.save-button {
+  width: 11.9vw;
+  height: 2.3vw;
+  font-family: "TTLakesNeueEduRegular";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.02vw;
+  color: #eeeeee;
+  background: radial-gradient(circle, #833ed7, #bf8aff);
+  border: 0.02vw solid #c6c6c6;
   border-radius: 0.6vw;
+  cursor: pointer;
+}
+
+/* Контейнер для сохраненных картинок */
+.saved-items-container {
+  position: absolute;
+  top: 3.5vw;
+  left: 1.8vw;
+  width: 15vw;
+  height: 12vw;
+  overflow: hidden;
+  z-index: 102;
+}
+
+.saved-items-track {
+  display: flex;
+  flex-direction: row;
+  transition: transform 0.3s ease;
+  width: fit-content;
+  height: 100%;
+}
+
+.saved-item {
+  width: 15vw;
+  height: 12vw;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5vw;
+  color: #ffffff;
+  font-family: "TTLakesNeueEduRegular";
+  font-size: 0.8vw;
+  overflow-y: auto;
+}
+
+.saved-item-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5vw;
+  width: 72%;
+  height: 100%;
+}
+
+.saved-item-row {
+  display: flex;
+  align-items: center;
+  gap: 0.8vw;
+  padding: 0.2vw 0;
+}
+
+.saved-item-row img {
+  width: 2vw;
+  height: 2vw;
+  object-fit: cover;
+  border: 1px solid #9d4edd;
+  border-radius: 0.2vw;
+}
+
+.saved-item-row-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.saved-item-time {
+  color: #9d4edd;
+  font-size: 0.6vw;
+  margin-bottom: 0.4vw;
+}
+
+.saved-item-name {
+  color: #ffffff;
+  font-size: 0.7vw;
+}
+
+.slider-L1,
+.slider-L2 {
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+.slider-L1.active,
+.slider-L2.active {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.slider-L1.active:hover,
+.slider-L2.active:hover {
+  opacity: 0.8;
+}
+
+.slider-L1.disabled,
+.slider-L2.disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* экран подтверждения */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  z-index: 999;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.overlay.active {
+  display: flex;
+  opacity: 1;
+}
+
+.confirm-modal {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.confirm-modal .glow {
+  position: absolute;
+  top: -2vw;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60vw;
+  height: 60vw;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.415) 0%,
+    rgba(255, 255, 255, 0.105) 30%,
+    rgba(255, 255, 255, 0.059) 60%
+  );
+  border-radius: 50%;
+  filter: blur(40px);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.confirm-modal img {
+  position: absolute;
+  top: 20.6vw;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 22vw;
+  height: auto;
+  z-index: 2;
+  object-fit: contain;
+}
+
+.modal-content {
+  position: absolute;
+  top: 20.7vw;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 22vw;
+  height: 22vw;
+  z-index: 3;
+  color: white;
+}
+
+.noti002 {
+  position: absolute;
+  font-family: "TTLakesNeueEduRegular";
+  font-size: 0.8vw;
+  color: #7e7e7e;
+  top: 5.2vw;
+  left: 1.4vw;
+}
+
+.notiDetail {
+  position: absolute;
+  font-family: "TTLakesNeueEduRegular";
+  font-size: 1.2vw;
+  color: #7e7e7e;
+  top: 8vw;
+  left: 1.4vw;
+}
+
+.textDetail {
+  position: absolute;
+  font-family: "TTLakesNeueEduRegular";
+  font-size: 1.2vw;
+  color: #ffffff;
+  top: 13vw;
+  left: 1.4vw;
+  line-height: 1.65vw;
+  width: 80%;
+  text-align: left;
+}
+
+.modal-buttons {
+  position: absolute;
+  display: flex;
+  gap: 1vw;
+  bottom: -5.8vw;
+  left: 0vw;
+  flex-direction: column;
+  width: 100%;
+}
+
+.modal-btn {
+  padding: 0.8vw 2.5vw;
+  font-family: "TTLakesNeueEduRegular";
+  font-size: 1.2vw;
+  border-radius: 0.5vw;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.modal-btn.yes {
+  background: radial-gradient(circle, #833ed7, #bf8aff);
+  color: #ffffff;
+  box-shadow: 0 0 25px rgba(157, 78, 221, 0.2);
+  border: none;
+}
+
+.modal-btn.yes:hover {
+  background: radial-gradient(circle, #9149e9, #bf8aff);
+  transform: scale(1.05);
+  box-shadow: 0 0 35px rgba(157, 78, 221, 0.2);
+}
+
+.modal-btn.no {
+  background: transparent;
+  color: #ffffff;
+  border: 0.08vw solid #e2e2e2;
+}
+
+.modal-btn.no:hover {
+  background: rgba(75, 75, 75, 0.3);
+  transform: scale(1.05);
+  border-color: #e2e2e2;
+}
+
+body.no-scroll {
+  overflow: hidden;
+}
+
+@keyframes modalAppear {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.confirm-modal {
+  animation: modalAppear 0.3s ease;
+}
+
+/* свечение */
+.circle1.glow::after,
+.circle2.glow::after,
+.circle3-1.glow::after,
+.circle3-2.glow::after,
+.circle3-3.glow::after,
+.circle3-4.glow::after,
+.circle3-5.glow::after,
+.circle3-6.glow::after {
+  opacity: 1;
+}
+
+.circle1.fast img,
+.circle2.fast img,
+.circle3-1.fast img,
+.circle3-2.fast img,
+.circle3-3.fast img,
+.circle3-4.fast img,
+.circle3-5.fast img,
+.circle3-6.fast img {
+  animation-duration: 10s !important;
+}
+
+.circle1.fast img {
+  animation-duration: 1s !important;
+}
+.circle2.fast img {
+  animation-duration: 2s !important;
+}
+.circle3-1.fast img {
+  animation-duration: 5.5s !important;
+}
+.circle3-2.fast img {
+  animation-duration: 3.5s !important;
+}
+.circle3-3.fast img {
+  animation-duration: 8s !important;
+}
+.circle3-4.fast img {
+  animation-duration: 4s !important;
+}
+.circle3-5.fast img {
+  animation-duration: 3.5s !important;
+}
+.circle3-6.fast img {
+  animation-duration: 3.5s !important;
+}
+
+.square1.saved-state,
+.square2.saved-state,
+.square3.saved-state {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+.arrow1.saved-state,
+.arrow2.saved-state,
+.arrow3.saved-state {
+  opacity: 0;
+  pointer-events: none;
+  animation: none;
+  transition: opacity 0.5s ease;
+}
+
+.square1,
+.square2,
+.square3 {
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+
+.square1.saved-state,
+.square2.saved-state,
+.square3.saved-state {
+  opacity: 0;
+  transform: scale(0.8);
+  pointer-events: none;
+}
+
+.circle1 img,
+.circle2 img,
+.circle3-1 img,
+.circle3-2 img,
+.circle3-3 img,
+.circle3-4 img,
+.circle3-5 img,
+.circle3-6 img {
+  transition: animation-duration 1s ease;
+}
+
+.circle1.fast img,
+.circle2.fast img,
+.circle3-1.fast img,
+.circle3-2.fast img,
+.circle3-3.fast img,
+.circle3-4.fast img,
+.circle3-5.fast img,
+.circle3-6.fast img {
+  animation-duration: 5s !important;
+}
+
+.circle1.fast img {
+  animation-duration: 5s !important;
+}
+.circle2.fast img {
+  animation-duration: 5s !important;
+}
+.circle3-1.fast img {
+  animation-duration: 7.5s !important;
+}
+.circle3-2.fast img {
+  animation-duration: 2.5s !important;
+}
+.circle3-3.fast img {
+  animation-duration: 10s !important;
+}
+.circle3-4.fast img {
+  animation-duration: 5s !important;
+}
+.circle3-5.fast img {
+  animation-duration: 2.5s !important;
+}
+.circle3-6.fast img {
+  animation-duration: 7.5s !important;
+}
+
+.arrow1,
+.arrow2,
+.arrow3 {
+  transition: opacity 0.8s ease;
+}
+
+.arrow1.saved-state,
+.arrow2.saved-state,
+.arrow3.saved-state {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* второй экран */
+.Second {
+  position: absolute;
+  top: 114.4vw;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: -2;
+}
+
+.SYNTH {
+  position: absolute;
+  font-family: "TTLakesNeueEduRegular";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.68vw;
+  color: #dedede;
+  white-space: nowrap;
+  top: 0vw;
+  left: 34.8vw;
+}
+
+.interface2 {
+  position: absolute;
+  top: 3.6vw;
+  left: 13.6vw;
+  z-index: 101;
+}
+
+.interface2 img {
+  width: 72.8vw;
+  height: 47vw;
+}
+
+.progress {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 73vw;
+  height: var(--progress-height, 22vw);
+  top: 10vw;
+  z-index: 100;
+  background-color: #292929;
+  border-radius: 0.6vw;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+  position: relative;
+}
+
+.curveGREY {
+  position: absolute;
+  display: flex;
+  width: 150%;
+  height: 606%;
+  object-fit: contain;
+  object-position: center;
+  transform-origin: center center;
+  left: 50%;
+  transform: translateX(-30%);
+}
+
+.curvePURPLE {
+  position: absolute;
+  display: flex;
+  width: 188%;
+  height: 606%;
+  object-fit: contain;
+  object-position: center;
+  transform-origin: center center;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.progress::after {
+  content: "";
+  position: absolute;
+  top: 52%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #ffffff);
+  transform: translateY(-50%);
+  z-index: -1;
+}
+
+.CONNECTION {
+  position: absolute;
+  font-family: "TTLakesNeueEduRegular";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.7vw;
+  color: #000000;
+  white-space: nowrap;
+  top: 8.3vw;
+  left: 14.6vw;
+  z-index: 102;
+}
+
+.CONNECTION::after {
+  content: "";
+  display: inline-block;
+  width: 2.5vw;
+  text-align: left;
+  animation: dotsCycle 2.5s steps(7, end) infinite;
+  color: #000000;
+}
+
+@keyframes dotsCycle {
+  0%,
+  100% {
+    content: "";
+  }
+  14% {
+    content: ".";
+  }
+  28% {
+    content: ". .";
+  }
+  42% {
+    content: ". . .";
+  }
+  57% {
+    content: ". .";
+  }
+  71% {
+    content: ".";
+  }
+  85% {
+    content: "";
+  }
+}
+
+/* Круги для кликов */
+.circle-click1,
+.circle-click2,
+.circle-click3,
+.circle-click4,
+.circle-click5,
+.circle-click6,
+.circle-click7,
+.circle-click8,
+.circle-click9,
+.circle-click10,
+.circle-click11,
+.circle-click12 {
+  position: absolute;
+  display: flex;
+  width: 1.9vw;
+  height: 1.9vw;
+  top: 8.4vw;
+  z-index: 105;
+  background: #888888;
+  border-radius: 3vw;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.circle-click1.active,
+.circle-click2.active,
+.circle-click3.active,
+.circle-click4.active,
+.circle-click5.active,
+.circle-click6.active,
+.circle-click7.active,
+.circle-click8.active,
+.circle-click9.active,
+.circle-click10.active,
+.circle-click11.active,
+.circle-click12.active {
+  background: radial-gradient(circle at 30% 30%, #7b31db, #cfa9ff);
+  transform: scale(1.05);
+}
+
+.circle-click1:hover,
+.circle-click2:hover,
+.circle-click3:hover,
+.circle-click4:hover,
+.circle-click5:hover,
+.circle-click6:hover,
+.circle-click7:hover,
+.circle-click8:hover,
+.circle-click9:hover,
+.circle-click10:hover,
+.circle-click11:hover,
+.circle-click12:hover {
+  transform: scale(1.1);
+}
+
+.circle-click1.active:hover,
+.circle-click2.active:hover,
+.circle-click3.active:hover,
+.circle-click4.active:hover,
+.circle-click5.active:hover,
+.circle-click6.active:hover,
+.circle-click7.active:hover,
+.circle-click8.active:hover,
+.circle-click9.active:hover,
+.circle-click10.active:hover,
+.circle-click11.active:hover,
+.circle-click12.active:hover {
+  transform: scale(1.1);
+}
+
+/* Позиции кругов */
+.circle-click1 {
+  left: 45.6%;
+}
+.circle-click2 {
+  left: 48.3%;
+}
+.circle-click3 {
+  left: 51%;
+}
+.circle-click4 {
+  left: 53.7%;
+}
+.circle-click5 {
+  left: 56.4%;
+}
+.circle-click6 {
+  left: 59.1%;
+}
+.circle-click7 {
+  left: 61.8%;
+}
+.circle-click8 {
+  left: 64.5%;
+}
+.circle-click9 {
+  left: 67.2%;
+}
+.circle-click10 {
+  left: 69.9%;
+}
+.circle-click11 {
+  left: 72.6%;
+}
+.circle-click12 {
+  left: 75.3%;
+}
+
+.Count2 {
+  position: absolute;
+  font-family: "TTLakesNeueEduRegular";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.7vw;
+  color: #000000;
+  white-space: nowrap;
+  top: 8.3vw;
+  left: 80.3vw;
+  z-index: 102;
+}
+
+.words3 {
+  position: absolute;
+  top: 133.4%;
+  left: 71%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: row;
+  gap: 2.5vw;
+  width: 100%;
+  z-index: 110;
+}
+
+.data2-1,
+.data2-2,
+.data2-3,
+.data2-4,
+.data2-5,
+.data2-6 {
+  position: absolute;
+  font-family: "TTLakesNeueEduRegular";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.02vw;
+  color: #d4d4d4;
+  white-space: nowrap;
+  position: relative;
+  top: auto;
+  left: auto;
+  transform: none;
+  letter-spacing: 0.01vw;
+}
+.data2-3 {
+  margin-left: -0.2vw;
+}
+.data2-4 {
+  margin-left: -1.37vw;
+  color: #fe01de;
+}
+.data2-5 {
+  margin-left: 6.9vw;
+}
+.data2-6 {
+  margin-left: 0.1vw;
+}
+
+.NOTI003 {
+  position: absolute;
+  display: flex;
+  top: 33.45vw;
+  left: 14.8vw;
+  width: 10vw;
+  height: 11.8vw;
+  z-index: 110;
+}
+
+.noti03 {
+  position: absolute;
+  font-family: "TTLakesNeueEduRegular";
+  font-size: 0.8vw;
+  color: #777777;
+  top: 0.6vw;
+  left: 1vw;
+}
+
+.notiDetail3 {
+  position: absolute;
+  font-family: "TTLakesNeueEduRegular";
+  font-size: 1vw;
+  color: #5f5f5f;
+  top: 3.3vw;
+  width: 16vw;
+  left: 1vw;
+  letter-spacing: 0.025vw;
+}
+
+.textDetail3 {
+  position: absolute;
+  font-family: "TTLakesNeueEduRegular";
+  font-size: 1vw;
+  color: #000000;
+  top: 6.6vw;
+  left: 1vw;
+  width: 14vw;
+  line-height: 1.37vw;
+}
+
+.greyCircle {
+  position: absolute;
+  display: flex;
+  width: 0.9vw;
+  height: 0.9vw;
+  top: -4vw;
+  left: 50.1vw;
+  z-index: 105;
+  background: #888888;
+  border-radius: 3vw;
+}
+
+.purpleCircle {
+  position: absolute;
+  display: flex;
+  width: 0.9vw;
+  height: 0.9vw;
+  top: -4vw;
+  left: 56.3vw;
+  z-index: 105;
+  background: radial-gradient(circle at 30% 30%, #7b31db, #cfa9ff);
+  border-radius: 3vw;
+}
+
+/* ===== БЕЛЫЕ ПОЛЗУНКИ ===== */
+.slider-container {
+  position: absolute;
+  z-index: 105;
+}
+
+.slider-container.left {
+  left: 38.3vw;
+  top: 35.66vw;
+}
+
+.slider-container.right {
+  left: 59.67vw;
+  top: 35.66vw;
+}
+
+.slider-container.neiro.left {
+  top: 42.66vw;
+}
+
+.slider-container.neiro.right {
+  top: 42.66vw;
+}
+
+.slider-track {
+  width: 20.6vw;
+  height: 2.55vw;
+  background: radial-gradient(circle at 50% 110%, #7b31db, #cfa9ff);
+  border-radius: 0.7vw;
+  position: relative;
+  cursor: pointer;
+}
+
+.slider-container.neiro .slider-track {
+  background: radial-gradient(circle at 80% 110%, #ff7edf, #ff4ad2);
+}
+
+.slider-thumb {
+  position: absolute;
+  width: 0.7vw;
+  height: 2.1vw;
+  background: #e0e0e0;
+  border-radius: 0.7vw;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  cursor: grab;
+  transition: box-shadow 0.2s;
+  z-index: 106;
+  pointer-events: auto;
+}
+
+.slider-thumb:active {
+  cursor: grabbing;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+}
+
+.slider-thumb:hover {
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.slider-label {
+  position: absolute;
+  font-family: "TTLakesNeueEduRegular";
+  font-size: 1vw;
+  color: #000000;
+  width: 16vw;
+  text-align: center;
+  top: -2.5vw;
+  left: 0;
+  z-index: 110;
+}
+
+/* Стили для заблокированного ползунка */
+.slider-thumb.disabled {
+  cursor: not-allowed !important;
+  opacity: 0.5;
+  pointer-events: none;
+}
+/* некликабельные свг */
+#circuit-svg,
+#grid-group,
+#light-group,
+.base-grid,
+.light-streak {
+  pointer-events: none !important;
 }

@@ -3,13 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <title>D.H.E.</title>
-
     <link rel="stylesheet" href="stylesheets/style.css" />
   </head>
   <body>
     <div class="stage">
-      <div class="center-content"></div>
-      <svg viewBox="0 0 800 1200" id="circuit-svg">
+      <svg viewBox="0 0 800 2000" id="circuit-svg">
         <g id="grid-group" class="base-grid"></g>
         <g id="light-group"></g>
       </svg>
@@ -19,7 +17,6 @@
       <img class="logo" src="images/logoHeader.svg" alt="" />
     </section>
 
-    <script src="javascripts/scripts.js"></script>
     <section class="First">
       <div class="words">
         <h2 class="PROTOTYPE">PROTOTYPE</h2>
@@ -35,10 +32,11 @@
         <p class="data5">creation-tools-loaded</p>
         <p class="data6">0%</p>
       </div>
+
       <div class="lineAnimation">
         <img class="pere" src="images/peregorodka.svg" alt="" />
         <img class="pere2" src="images/peregorodka2.svg" alt="" />
-        <img class="" src="images/line.svg" alt="" />
+        <img src="images/line.svg" alt="" />
       </div>
 
       <div class="NOTI1">
@@ -57,7 +55,6 @@
         <button class="slider__prev">
           <img src="images/slider1.svg" />
         </button>
-
         <div class="slider__window">
           <ul class="slider__list">
             <li class="slider__element">
@@ -71,7 +68,6 @@
             </li>
           </ul>
         </div>
-
         <button class="slider__next">
           <img src="images/slider2.svg" />
         </button>
@@ -87,7 +83,6 @@
         <button class="slider__prev2">
           <img src="images/slider1.svg" />
         </button>
-
         <div class="slider__window2">
           <ul class="slider__list2">
             <li class="slider__element2">
@@ -101,7 +96,6 @@
             </li>
           </ul>
         </div>
-
         <button class="slider__next2">
           <img src="images/slider2.svg" />
         </button>
@@ -112,12 +106,11 @@
         <img src="images/Sector2.svg" alt="Sector" />
       </div>
 
-      <!-- очень фиолетовый -->
+      <!-- очень фиолетовый слайдер -->
       <div class="slider3">
         <button class="slider__prev3">
           <img src="images/slider1.svg" />
         </button>
-
         <div class="slider__window3">
           <ul class="slider__list3">
             <li class="slider__element3">
@@ -131,7 +124,6 @@
             </li>
           </ul>
         </div>
-
         <button class="slider__next3">
           <img src="images/slider2.svg" />
         </button>
@@ -144,37 +136,152 @@
 
       <img class="top1" src="images/1.png" alt="" />
 
+      <!-- кружочки -->
       <section>
-        <div class="circle1">
-          <img src="images/circle1.svg" />
-        </div>
-        <div class="circle2">
-          <img src="images/circle2.svg" />
-        </div>
-        <div class="circle3-1">
-          <img src="images/circle3-1.svg" />
-        </div>
-        <div class="circle3-2">
-          <img src="images/circle3-2.svg" />
-        </div>
-        <div class="circle3-3">
-          <img src="images/circle3-3.svg" />
-        </div>
-        <div class="circle3-4">
-          <img src="images/circle3-4.svg" />
-        </div>
-        <div class="circle3-5">
-          <img src="images/circle3-5.svg" />
-        </div>
-        <div class="circle3-6">
-          <img src="images/circle3-6.svg" />
-        </div>
+        <div class="circle1"><img src="images/circle1.svg" /></div>
+        <div class="circle2"><img src="images/circle2.svg" /></div>
+        <div class="circle3-1"><img src="images/circle3-1.svg" /></div>
+        <div class="circle3-2"><img src="images/circle3-2.svg" /></div>
+        <div class="circle3-3"><img src="images/circle3-3.svg" /></div>
+        <div class="circle3-4"><img src="images/circle3-4.svg" /></div>
+        <div class="circle3-5"><img src="images/circle3-5.svg" /></div>
+        <div class="circle3-6"><img src="images/circle3-6.svg" /></div>
       </section>
+
+      <!-- квадраты выбора и стрелка -->
       <section class="choice">
         <div class="square1"></div>
         <div class="square2"></div>
         <div class="square3"></div>
       </section>
+
+      <section class="ar1">
+        <div class="arrow1">
+          <img src="images/arrow1.svg" />
+        </div>
+        <div class="arrow2">
+          <img src="images/arrow3.svg" />
+        </div>
+        <div class="arrow3">
+          <img src="images/arrow2.svg" />
+        </div>
+      </section>
     </section>
+
+    <section class="library">
+      <p class="library-up-text">LIBRARY</p>
+      <div class="slider-L1">
+        <img src="images/slider1.svg" />
+      </div>
+      <div class="slider-L2">
+        <img src="images/slider2.svg" />
+      </div>
+      <p class="amount">1/1</p>
+      <div class="library-pic">
+        <img src="images/library-pic.svg" />
+      </div>
+    </section>
+
+    <section class="save">
+      <button class="save-button">СОХРАНИТЬ</button>
+    </section>
+
+    <div class="overlay" id="overlay">
+      <div class="confirm-modal">
+        <div class="glow"></div>
+        <img src="images/confim-pic.svg" alt="modal background" />
+        <div class="modal-content">
+          <p class="noti002">NOTIFICATION-002</p>
+          <p class="notiDetail">detail-maker // notification</p>
+          <p class="textDetail">
+            Вы действительно хотите сохранить эту деталь?
+          </p>
+          <div class="modal-buttons">
+            <button class="modal-btn yes" id="confirmYes">/ДА/</button>
+            <button class="modal-btn no" id="confirmNo">/НЕТ/</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="Second">
+      <h2 class="SYNTH">ПРОХОЖДЕНИЕ-СИНХРОНИЗАЦИИ</h2>
+      <p class="CONNECTION">CONNECTION</p>
+      <div class="interface2">
+        <img src="images/2.svg" />
+      </div>
+      <div class="progress">
+        <img src="images/curveGREY.svg" alt="" class="curveGREY" />
+        <img src="images/curvePURPLE.svg" alt="" class="curvePURPLE" />
+      </div>
+
+      <div class="circle-click1"></div>
+      <div class="circle-click2"></div>
+      <div class="circle-click3"></div>
+      <div class="circle-click4"></div>
+      <div class="circle-click5"></div>
+      <div class="circle-click6"></div>
+      <div class="circle-click7"></div>
+      <div class="circle-click8"></div>
+      <div class="circle-click9"></div>
+      <div class="circle-click10"></div>
+      <div class="circle-click11"></div>
+      <div class="circle-click12"></div>
+      <p class="Count2">11 / 12</p>
+      <div class="words3">
+        <p class="data2-1">4543-34383.568432</p>
+        <p class="data2-2">>>></p>
+        <p class="data2-3">соединение:</p>
+        <p class="data2-4">КАТАСТРОФИЧЕСКОЕ</p>
+        <p class="data2-5">//нейро</p>
+        <p class="data2-6">//эмоция</p>
+      </div>
+      <div class="NOTI003">
+        <p class="noti03">NOTIFICATION-003</p>
+        <p class="notiDetail3">synchro // NOTIFICATION</p>
+        <p class="textDetail3">
+          Соедини нейронные волны для успешного сопряжения микросхем с центром
+          D.H.E.
+        </p>
+        <div class="greyCircle"></div>
+        <div class="purpleCircle"></div>
+        <img src="images/NOTI003.svg" />
+      </div>
+
+      <!-- БЕЛЫЕ ПОЛЗУНКИ -->
+      <!-- EMO - ширина (левая) -->
+      <div class="slider-container left">
+        <div class="slider-track emo-width-track" id="emoWidthTrack">
+          <div class="slider-thumb" id="emoWidthThumb"></div>
+        </div>
+        <p class="slider-label emo-width">EMO-ширина</p>
+      </div>
+
+      <!-- EMO - длина (правая) -->
+      <div class="slider-container right">
+        <div class="slider-track emo-length-track" id="emoLengthTrack">
+          <div class="slider-thumb" id="emoLengthThumb"></div>
+        </div>
+        <p class="slider-label emo-length">EMO-длина</p>
+      </div>
+
+      <!-- NEIRO - ширина (левая) -->
+      <div class="slider-container left neiro">
+        <div class="slider-track neiro-width-track" id="neiroWidthTrack">
+          <div class="slider-thumb" id="neiroWidthThumb"></div>
+        </div>
+        <p class="slider-label neiro-width">Нейро-ширина</p>
+      </div>
+
+      <!-- NEIRO - длина (правая) -->
+      <div class="slider-container right neiro">
+        <div class="slider-track neiro-length-track" id="neiroLengthTrack">
+          <div class="slider-thumb" id="neiroLengthThumb"></div>
+        </div>
+        <p class="slider-label neiro-length">Нейро-длина</p>
+      </div>
+    </section>
+
+    <script src="javascripts/scripts.js"></script>
   </body>
 </html>
