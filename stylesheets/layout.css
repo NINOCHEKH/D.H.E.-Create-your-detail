@@ -23,11 +23,27 @@ body {
   overflow-y: auto;
 }
 
+/* body::before {
+  content: "";
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 435%;
+  background-image: url("../images/pic.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.3;
+  z-index: -1;
+} */
+
 /* хед */
 .header {
   position: absolute;
   top: 22.5vw;
-  width: 100%;
+  left: 37.7vw;
   display: flex;
   justify-content: center;
   z-index: -3;
@@ -131,12 +147,12 @@ body {
 .words {
   position: absolute;
   top: 15%;
-  left: 65%;
+  left: 15vw;
   transform: translateX(-50%);
   display: flex;
   flex-direction: row;
   gap: 2.5vw;
-  width: 100%;
+  width: 0%;
 }
 
 .PROTOTYPE,
@@ -164,12 +180,12 @@ body {
 .words2 {
   position: absolute;
   top: 58%;
-  left: 79.7%;
+  left: 29.7%;
   transform: translateX(-50%);
   display: flex;
   flex-direction: row;
   gap: 1.65vw;
-  width: 100%;
+  width: 0;
 }
 .data,
 .data2,
@@ -1348,7 +1364,7 @@ body.no-scroll {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 73vw;
+  width: 72.8vw;
   height: var(--progress-height, 22vw);
   top: 10vw;
   z-index: 100;
@@ -1367,7 +1383,6 @@ body.no-scroll {
   object-fit: contain;
   object-position: center;
   transform-origin: center center;
-  left: 50%;
   transform: translateX(-30%);
 }
 
@@ -1379,7 +1394,6 @@ body.no-scroll {
   object-fit: contain;
   object-position: center;
   transform-origin: center center;
-  left: 50%;
   transform: translateX(-50%);
 }
 
@@ -1415,6 +1429,12 @@ body.no-scroll {
   text-align: left;
   animation: dotsCycle 2.5s steps(7, end) infinite;
   color: #000000;
+}
+
+.CONNECTION.done::after {
+  content: none !important;
+  display: none !important;
+  animation: none !important;
 }
 
 @keyframes dotsCycle {
@@ -1567,21 +1587,19 @@ body.no-scroll {
 .words3 {
   position: absolute;
   top: 133.4%;
-  left: 71%;
+  left: 22%;
   transform: translateX(-50%);
   display: flex;
   flex-direction: row;
   gap: 2.5vw;
-  width: 100%;
+  width: 0;
   z-index: 110;
 }
 
 .data2-1,
 .data2-2,
 .data2-3,
-.data2-4,
-.data2-5,
-.data2-6 {
+.data2-4 {
   position: absolute;
   font-family: "TTLakesNeueEduRegular";
   font-style: normal;
@@ -1607,6 +1625,43 @@ body.no-scroll {
 }
 .data2-6 {
   margin-left: 0.1vw;
+}
+
+.data2-5,
+.data2-6 {
+  position: absolute;
+  display: inline-block;
+  font-family: "TTLakesNeueEduRegular";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.02vw;
+  color: #d4d4d4;
+  white-space: nowrap;
+  letter-spacing: 0.01vw;
+  z-index: 150;
+}
+
+.data-row {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  gap: 2.5vw;
+  top: 29.4vw;
+  left: 66.2vw;
+  z-index: 152;
+  align-items: center;
+}
+
+.data2-5 {
+  position: relative;
+  margin: 0;
+  color: #d4d4d4;
+}
+
+.data2-6 {
+  position: relative;
+  margin: 0;
+  color: #d4d4d4;
 }
 
 .NOTI003 {
@@ -1670,7 +1725,7 @@ body.no-scroll {
   top: -4vw;
   left: 56.3vw;
   z-index: 105;
-  background: radial-gradient(circle at 30% 30%, #7b31db, #cfa9ff);
+  background: radial-gradient(#ff53d4);
   border-radius: 3vw;
 }
 
@@ -1741,7 +1796,6 @@ body.no-scroll {
   font-size: 1vw;
   color: #000000;
   width: 16vw;
-  text-align: center;
   top: -2.5vw;
   left: 0;
   z-index: 110;
@@ -1753,11 +1807,467 @@ body.no-scroll {
   opacity: 0.5;
   pointer-events: none;
 }
-/* некликабельные свг */
+
+.progressDiv {
+  position: absolute;
+  top: 49.6vw;
+  left: 13.6vw;
+  background-color: #ffffff;
+  height: 2.3vw;
+  width: 72.9vw;
+  border-radius: 0.5vw;
+  z-index: 120;
+}
+
+.progressDiv2 {
+  position: absolute;
+  top: 49.87vw;
+  left: 14.05vw;
+  background-color: #888888;
+  height: 1.7vw;
+  width: 72vw;
+  border-radius: 0.5vw;
+  z-index: 121;
+}
+
+.progressDiv1 {
+  position: absolute;
+  top: 49.87vw;
+  left: 14.05vw;
+  background-color: #8e8e8e;
+  height: 1.7vw;
+  width: 72vw;
+  border-radius: 0.5vw;
+  z-index: 122;
+}
+
+.progressDiv2 {
+  position: absolute;
+  top: 49.87vw;
+  left: 14.05vw;
+  background-color: #888888;
+  height: 1.7vw;
+  width: 0vw;
+  border-radius: 0.5vw;
+  z-index: 123;
+  transition:
+    width 0.5s ease-out,
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.progressDiv2.full {
+  background-color: #9d4edd;
+  box-shadow: 0 0 10px rgba(157, 78, 221, 0.5);
+}
+
+/* третья секция */
+.Third {
+  position: absolute;
+  top: 179vw;
+  left: 0;
+  width: 100%;
+  min-height: 60vw;
+  z-index: -2;
+}
+
+/* Текст над изображением */
+.wordsThirdSection {
+  position: absolute;
+  top: 1.2vw;
+  left: 50vw;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: row;
+  gap: 2.5vw;
+  white-space: nowrap;
+  z-index: 15;
+}
+
+.HUMANIZATION {
+  font-family: "TTLakesNeueEduRegular";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.68vw;
+  color: #000000;
+  white-space: nowrap;
+}
+
+.TakeItHumanization {
+  font-family: "TTLakesNeueEduRegular";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.7vw;
+  color: #000000;
+  white-space: nowrap;
+  letter-spacing: -0.02vw;
+}
+
+.TakeItHumanizationNumber {
+  font-family: "TTLakesNeueEduRegular";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.7vw;
+  color: rgb(0, 0, 0);
+  white-space: nowrap;
+  margin-left: 14.4vw;
+}
+
+/* Изображение - как в Second */
+.interface3-image {
+  position: absolute;
+  top: -20.6vw;
+  left: 13.6vw;
+  width: 72.8vw;
+  height: 47vw;
+  object-fit: contain;
+  z-index: 14;
+}
+
+.squarePink {
+  position: absolute;
+  height: 10vw;
+  width: 13.5vw;
+  left: 15.1vw;
+  border-radius: 0.7vw;
+  background-color: #929292;
+  z-index: 10;
+}
+
+.NOTI-004 {
+  position: absolute;
+  top: 5.9vw;
+  left: 32.3vw;
+  height: 11.8vw;
+  display: flex;
+  transform-origin: center;
+  z-index: 10;
+}
+
+.NOTI-004-top,
+.NOTI-004-mid,
+.NOTI-004-bottom {
+  font-family: "TTLakesNeueEduRegular";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 0.74vw;
+  color: #7e7e7e;
+  white-space: nowrap;
+  position: absolute;
+  z-index: 3;
+  top: 1.45vw;
+  left: 0.7vw;
+}
+
+.NOTI-004-mid {
+  font-size: 1vw;
+  top: 3.9vw;
+  letter-spacing: -0.019vw;
+}
+
+.NOTI-004-bottom {
+  color: #d4d4d4;
+  font-size: 1vw;
+  top: 7.2vw;
+  letter-spacing: 0.03vw;
+  line-height: 1.37vw;
+}
+
+.NOTI-004-image {
+  width: 23.3vw;
+  display: block;
+  z-index: 1;
+}
+
+/* road0 - самый нижний слой */
+.road0 {
+  width: 86vw;
+  display: block;
+  position: absolute;
+  top: 7.7vw;
+  left: 14.1vw;
+  z-index: -30;
+  transition: opacity 0.5s ease;
+}
+
+/* Контейнер heart1 - над road0, под элементами Third */
+.heart1,
+.heart2,
+.heart3,
+.heart4 {
+  position: absolute;
+  top: 51.5vw;
+  left: 92.1vw;
+  width: 3.6vw;
+  height: auto;
+  z-index: -0;
+  animation: heartMove 12s ease-out infinite;
+}
+
+.heart1SVG,
+.heart2-1SVG,
+.heart3-1SVG,
+.heart4-1SVG {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Второе сердечко - позиционируется относительно heart1 */
+.heart2SVG,
+.heart2-2SVG,
+.heart3-2SVG,
+.heart4-2SVG {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  display: block;
+  top: -3vw;
+  left: 0;
+  z-index: 0;
+  animation: floatUpDown 1.5s ease-in-out infinite;
+}
+
+.heart1 {
+  animation: heartMove 8s ease-in-out infinite;
+  animation-delay: 0s;
+}
+
+.heart2 {
+  animation: heartMove 8s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+.heart3 {
+  animation: heartMove 8s ease-in-out infinite;
+  animation-delay: 4s;
+}
+
+.heart4 {
+  animation: heartMove 8s ease-in-out infinite;
+  animation-delay: 6s;
+}
+
+/* Анимация движения вверх-вниз */
+@keyframes floatUpDown {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2.5vw);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Основная анимация движения heart1 */
+@keyframes heartMove {
+  0% {
+    transform: translate(-4vw, 0);
+  }
+  9% {
+    transform: translate(-70vw, 0);
+  }
+  18% {
+    transform: translate(-76vw, -2vw);
+  }
+  27% {
+    transform: translate(-77vw, -7vw);
+  }
+  36% {
+    transform: translate(-74vw, -13vw);
+  }
+  45% {
+    transform: translate(-68.5vw, -14.5vw);
+  }
+  54% {
+    transform: translate(-20vw, -14.5vw);
+  }
+  63% {
+    transform: translate(-13.3vw, -17vw);
+  }
+  72% {
+    transform: translate(-13vw, -23vw);
+  }
+  81% {
+    transform: translate(-18vw, -29vw);
+  }
+  90% {
+    transform: translate(-75vw, -29vw);
+  }
+  100% {
+    transform: translate(-75vw, -45vw);
+  }
+}
+
+/* Анимация для появления текста */
+@keyframes fadeInText {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Стили для NOTI-004 с анимацией */
+.NOTI-004-top,
+.NOTI-004-mid,
+.NOTI-004-bottom {
+  transition: all 0.3s ease;
+}
+
+/* Стили для road0 с анимацией */
+.road0 {
+  width: 86vw;
+  display: block;
+  position: absolute;
+  top: 7.7vw;
+  left: 14.1vw;
+  z-index: -30;
+  transition: opacity 0.5s ease;
+}
+
+/* Стили для кликабельных сердечек */
+.heart1,
+.heart2,
+.heart3,
+.heart4 {
+  cursor: pointer;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+.heart1:hover,
+.heart2:hover,
+.heart3:hover,
+.heart4:hover {
+  transform: scale(1.05);
+}
+
+/* Анимация для squarePink */
+.squarePink {
+  transition: background 0.5s ease;
+}
+
+/* ноу мор сдвг */
 #circuit-svg,
 #grid-group,
 #light-group,
 .base-grid,
 .light-streak {
   pointer-events: none !important;
+}
+/* ===== АДАПТИВ ДЛЯ 768px - ПОЛНЫЙ РАБОЧИЙ ВАРИАНТ ===== */
+@media screen and (max-width: 768px) {
+  /* Увеличиваем все шрифты */
+  .PROTOTYPE,
+  .PROTOTYPE3,
+  .PROTOTYPE2,
+  .data,
+  .data2,
+  .data3,
+  .data4,
+  .data5,
+  .data6,
+  .noti1-top,
+  .noti1-mid,
+  .noti1-bottom,
+  .slider-bottom-text1,
+  .slider-bottom-text1-2,
+  .slider-bottom-text2,
+  .slider-bottom-text2-2,
+  .slider-bottom-text3,
+  .slider-bottom-text3-2,
+  .library-up-text,
+  .amount,
+  .save-button,
+  .SYNTH,
+  .CONNECTION,
+  .Count2,
+  .data2-1,
+  .data2-2,
+  .data2-3,
+  .data2-4,
+  .data2-5,
+  .data2-6,
+  .noti03,
+  .notiDetail3,
+  .textDetail3,
+  .slider-label,
+  .HUMANIZATION,
+  .TakeItHumanization,
+  .TakeItHumanizationNumber,
+  .NOTI-004-top,
+  .NOTI-004-mid,
+  .NOTI-004-bottom {
+    font-size: 4vw !important;
+  }
+
+  /* Увеличиваем элементы */
+  .slider__element img,
+  .slider__element2 img,
+  .slider__element3 img {
+    width: 10vw !important;
+  }
+
+  .arrow1 img,
+  .arrow2 img,
+  .arrow3 img {
+    height: 8vw !important;
+    width: 8vw !important;
+  }
+
+  .square1,
+  .square2,
+  .square3 {
+    width: 10vw !important;
+    height: 10vw !important;
+  }
+
+  .circle1,
+  .circle2,
+  .circle3-1,
+  .circle3-2,
+  .circle3-3,
+  .circle3-4,
+  .circle3-5,
+  .circle3-6 {
+    width: 10vw !important;
+  }
+
+  /* Прогресс бары */
+  .progressDiv,
+  .progressDiv1,
+  .progressDiv2 {
+    width: 85vw !important;
+    left: 7.5vw !important;
+  }
+
+  /* Корректируем отступы */
+  .words {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+
+  .words2 {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+
+  .wordsThirdSection {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    gap: 2vw !important;
+  }
+
+  /* Увеличиваем line-height для многострочных текстов */
+  .textDetail3,
+  .NOTI-004-bottom {
+    line-height: 6vw !important;
+  }
 }

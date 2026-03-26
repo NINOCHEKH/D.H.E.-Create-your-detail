@@ -73,19 +73,19 @@ function createTwoTechLines() {
     light.dataset.index = index;
     lightGroup.appendChild(light);
 
-    path.addEventListener("mouseenter", function (e) {
+    path.addEventListener("mouseenter", function () {
       pauseLineAnimation(index);
     });
 
-    path.addEventListener("mouseleave", function (e) {
+    path.addEventListener("mouseleave", function () {
       resumeLineAnimation(index);
     });
 
-    light.addEventListener("mouseenter", function (e) {
+    light.addEventListener("mouseenter", function () {
       pauseLineAnimation(index);
     });
 
-    light.addEventListener("mouseleave", function (e) {
+    light.addEventListener("mouseleave", function () {
       resumeLineAnimation(index);
     });
   });
@@ -147,6 +147,142 @@ createTwoTechLines();
 setInterval(() => {
   launchPulse();
 }, 200);
+
+// ===== ФУНКЦИЯ ДЛЯ ОБНОВЛЕНИЯ ТЕКСТА CONNECTION =====
+function updateConnectionText() {
+  const connectionElement = document.querySelector(".CONNECTION");
+  const progressDiv2 = document.querySelector(".progressDiv2");
+
+  if (!connectionElement || !progressDiv2) return;
+
+  const currentWidth = parseFloat(progressDiv2.style.width) || 0;
+  const maxWidthVw = 72;
+  const isMaxProgress = currentWidth >= maxWidthVw - 0.5;
+
+  if (isMaxProgress) {
+    if (connectionElement.textContent !== "CONNECTION: DONE!") {
+      connectionElement.textContent = "CONNECTION: DONE!";
+      connectionElement.classList.add("done");
+      connectionElement.style.color = "#9d4edd";
+      connectionElement.style.textShadow = "0 0 10px rgba(157, 78, 221, 0.5)";
+      connectionElement.style.animation = "pulse 0.5s ease-in-out";
+      setTimeout(() => {
+        connectionElement.style.animation = "";
+      }, 500);
+      console.log("✅ CONNECTION: DONE! - Прогресс достиг 100%");
+    }
+  } else {
+    if (connectionElement.textContent !== "CONNECTION") {
+      connectionElement.textContent = "CONNECTION";
+      connectionElement.classList.remove("done");
+      connectionElement.style.color = "#000000";
+      connectionElement.style.textShadow = "none";
+      console.log("🔄 CONNECTION - Прогресс меньше 100%");
+    }
+  }
+}
+
+// ===== ФУНКЦИЯ ДЛЯ ОБНОВЛЕНИЯ ПРОГРЕСС БАРА =====
+function updateProgressBar() {
+  const progressDiv2 = document.querySelector(".progressDiv2");
+  const statusElement = document.querySelector(".data2-4");
+
+  if (!progressDiv2) return;
+
+  const activeCirclesCount = document.querySelectorAll(
+    ".circle-click1.active, .circle-click2.active, .circle-click3.active, .circle-click4.active, .circle-click5.active, .circle-click6.active, .circle-click7.active, .circle-click8.active, .circle-click9.active, .circle-click10.active, .circle-click11.active, .circle-click12.active"
+  ).length;
+
+  const status = statusElement ? statusElement.textContent : "";
+  const circlesProgress = (activeCirclesCount / 12) * 100;
+  const excellentBonus = status === "ОТЛИЧНОЕ" ? 100 : 0;
+  let targetPercent = Math.min(circlesProgress + excellentBonus, 100);
+  const maxWidthVw = 72;
+  const newWidthVw = (targetPercent / 100) * maxWidthVw;
+
+  progressDiv2.style.transition = "width 0.5s ease-out";
+  progressDiv2.style.width = newWidthVw + "vw";
+
+  if (targetPercent >= 100) {
+    progressDiv2.style.backgroundColor = "#9d4edd";
+    progressDiv2.style.boxShadow = "0 0 10px rgba(157, 78, 221, 0.5)";
+  } else if (targetPercent >= 70) {
+    progressDiv2.style.backgroundColor = "#bf8aff";
+    progressDiv2.style.boxShadow = "none";
+  } else if (targetPercent >= 40) {
+    progressDiv2.style.backgroundColor = "#ff7edf";
+    progressDiv2.style.boxShadow = "none";
+  } else {
+    progressDiv2.style.backgroundColor = "#292929";
+    progressDiv2.style.boxShadow = "none";
+  }
+
+  console.log(
+    `📊 Прогресс бар: ${targetPercent.toFixed(1)}% (${newWidthVw.toFixed(1)}vw) | Круги: ${activeCirclesCount}/12 | Статус: ${status}`
+  );
+
+  updateConnectionText();
+}
+
+// ===== ФУНКЦИЯ ОЦЕНКИ СОСТОЯНИЯ =====
+function updateConnectionStatus() {
+  const statusElement = document.querySelector(".data2-4");
+  const progressDiv = document.querySelector(".progress");
+
+  if (!statusElement) return;
+
+  const emoWidth = window.currentEmoWidth || 230;
+  const emoLength = window.currentEmoLength || 0;
+  const neiroWidth = window.currentNeiroWidth || 230;
+  const neiroLength = window.currentNeiroLength || 0;
+
+  const emoWidthNorm = (emoWidth - 230) / (400 - 230);
+  const emoLengthNorm = (emoLength + 100) / 200;
+  const neiroWidthNorm = (neiroWidth - 230) / (400 - 230);
+  const neiroLengthNorm = (neiroLength + 100) / 200;
+
+  const totalRating =
+    (emoWidthNorm + emoLengthNorm + neiroWidthNorm + neiroLengthNorm) / 4;
+
+  let status = "";
+  let statusClass = "";
+  let statusColor = "";
+  let progressColor = "";
+
+  if (totalRating < 0.33) {
+    status = "КАТАСТРОФИЧЕСКОЕ";
+    statusClass = "status-catastrophic";
+    statusColor = "#FE01DE";
+    progressColor = "#292929";
+  } else if (totalRating < 0.66) {
+    status = "ПЛОХОЕ";
+    statusClass = "status-bad";
+    statusColor = "#FF7CEE";
+    progressColor = "#656565";
+  } else {
+    status = "ОТЛИЧНОЕ";
+    statusClass = "status-excellent";
+    statusColor = "#FFFFFF";
+    progressColor = "#949494";
+  }
+
+  statusElement.textContent = status;
+  statusElement.className = `data2-4 ${statusClass}`;
+  statusElement.style.color = statusColor;
+
+  if (progressDiv) {
+    progressDiv.style.backgroundColor = progressColor;
+    progressDiv.style.transition = "background-color 0.3s ease";
+  }
+
+  console.log(
+    `📊 Статус соединения: ${status} (рейтинг: ${totalRating.toFixed(3)})`
+  );
+
+  updateProgressBar();
+
+  return { status, totalRating, statusColor, progressColor };
+}
 
 // ===== ВСЕ СЛАЙДЕРЫ =====
 function initSlider1() {
@@ -306,13 +442,11 @@ function initSlider3() {
 function initAllSlidersToSquares() {
   console.log("🔍 Инициализация вставки картинок из слайдеров в квадраты...");
 
-  // 1 слайдер
   const slider1Images = document.querySelectorAll(
     ".slider .slider__element img"
   );
   const square1 = document.querySelector(".square1");
   const arrow1 = document.querySelector(".arrow1");
-
   let currentSelectedImg1 = null;
 
   if (square1 && slider1Images.length > 0) {
@@ -404,7 +538,6 @@ function initAllSlidersToSquares() {
     console.log("❌ Слайдер 1: square1 или картинки не найдены");
   }
 
-  // 2 слайдер
   const slider2Images = document.querySelectorAll(
     ".slider2 .slider__element2 img"
   );
@@ -493,7 +626,6 @@ function initAllSlidersToSquares() {
     console.log("❌ Слайдер 2: square2 или картинки не найдены");
   }
 
-  // 3 слайдер
   const slider3Images = document.querySelectorAll(
     ".slider3 .slider__element3 img"
   );
@@ -587,8 +719,6 @@ function initAllSlidersToSquares() {
 
 // сохранение
 function initSaveButton() {
-  console.log("🔍 Инициализация кнопки сохранения...");
-
   const saveBtn = document.querySelector(".save-button");
   const square1 = document.querySelector(".square1");
   const square2 = document.querySelector(".square2");
@@ -617,7 +747,6 @@ function initSaveButton() {
   let isSavedState = false;
 
   if (!saveBtn || !square1 || !square2 || !square3 || !overlay) {
-    console.error("❌ Не найдены квадраты или кнопка сохранения");
     return;
   }
 
@@ -629,8 +758,6 @@ function initSaveButton() {
   }
 
   function activateSavedState() {
-    console.log("✨ Активация эффектов после сохранения...");
-
     circles.forEach((circle) => {
       if (circle) circle.classList.add("fast");
     });
@@ -648,8 +775,6 @@ function initSaveButton() {
 
   function deactivateSavedState() {
     if (!isSavedState) return;
-
-    console.log("🔄 Плавный возврат к обычному состоянию...");
 
     circles.forEach((circle) => {
       if (circle) circle.classList.remove("fast");
@@ -1090,6 +1215,8 @@ function initClickableCircles() {
       countElement.style.color = "#000000";
       countElement.style.textShadow = "none";
     }
+
+    updateProgressBar();
   }
 
   circles.forEach((circle, index) => {
@@ -1115,456 +1242,345 @@ function initClickableCircles() {
   });
 
   updateCounter();
-
-  console.log("✅ Кликабельные круги инициализированы");
-}
-
-// ===== УПРАВЛЕНИЕ КАРТИНКАМИ ЧЕРЕЗ ИНПУТЫ =====
-function initInputControls() {
-  console.log("🔍 Инициализация управления через инпуты...");
-
-  const curveGREY = document.querySelector(".curveGREY");
-  const curvePURPLE = document.querySelector(".curvePURPLE");
-
-  // EMO инпуты
-  const emoWidthInput = document.getElementById("emoWidthInput");
-  const emoLengthInput = document.getElementById("emoLengthInput");
-
-  // NEIRO инпуты
-  const neiroWidthInput = document.getElementById("neiroWidthInput");
-  const neiroLengthInput = document.getElementById("neiroLengthInput");
-
-  if (
-    !curveGREY ||
-    !curvePURPLE ||
-    !emoWidthInput ||
-    !emoLengthInput ||
-    !neiroWidthInput ||
-    !neiroLengthInput
-  ) {
-    console.warn("❌ Не все элементы найдены");
-    return;
-  }
-
-  // Диапазоны
-  const EMO_WIDTH_MIN = 230;
-  const EMO_WIDTH_MAX = 400;
-  const EMO_LENGTH_MIN = -44;
-  const EMO_LENGTH_MAX = 0;
-
-  const NEIRO_WIDTH_MIN = 230;
-  const NEIRO_WIDTH_MAX = 400;
-  const NEIRO_LENGTH_MIN = -44;
-  const NEIRO_LENGTH_MAX = 0;
-
-  // Функция для обновления ширины curveGREY
-  function updateGreyWidth() {
-    let value = parseFloat(emoWidthInput.value);
-    if (isNaN(value)) value = EMO_WIDTH_MIN;
-    value = Math.max(EMO_WIDTH_MIN, Math.min(EMO_WIDTH_MAX, value));
-    curveGREY.style.width = value + "%";
-    emoWidthInput.value = value;
-    console.log("EMO ширина:", value, "%");
-  }
-
-  // Функция для обновления длины curveGREY
-  function updateGreyLength() {
-    let value = parseFloat(emoLengthInput.value);
-    if (isNaN(value)) value = EMO_LENGTH_MIN;
-    value = Math.max(EMO_LENGTH_MIN, Math.min(EMO_LENGTH_MAX, value));
-    curveGREY.style.left = value + "vw";
-    emoLengthInput.value = value;
-    console.log("EMO длина:", value, "vw");
-  }
-
-  // Функция для обновления ширины curvePURPLE
-  function updatePurpleWidth() {
-    let value = parseFloat(neiroWidthInput.value);
-    if (isNaN(value)) value = NEIRO_WIDTH_MIN;
-    value = Math.max(NEIRO_WIDTH_MIN, Math.min(NEIRO_WIDTH_MAX, value));
-    curvePURPLE.style.width = value + "%";
-    neiroWidthInput.value = value;
-    console.log("NEIRO ширина:", value, "%");
-  }
-
-  // Функция для обновления длины curvePURPLE
-  function updatePurpleLength() {
-    let value = parseFloat(neiroLengthInput.value);
-    if (isNaN(value)) value = NEIRO_LENGTH_MIN;
-    value = Math.max(NEIRO_LENGTH_MIN, Math.min(NEIRO_LENGTH_MAX, value));
-    curvePURPLE.style.left = value + "vw";
-    neiroLengthInput.value = value;
-    console.log("NEIRO длина:", value, "vw");
-  }
-
-  // Добавляем обработчики событий
-  emoWidthInput.addEventListener("input", updateGreyWidth);
-  emoLengthInput.addEventListener("input", updateGreyLength);
-  neiroWidthInput.addEventListener("input", updatePurpleWidth);
-  neiroLengthInput.addEventListener("input", updatePurpleLength);
-
-  // Устанавливаем начальные значения
-  updateGreyWidth();
-  updateGreyLength();
-  updatePurpleWidth();
-  updatePurpleLength();
-
-  console.log("✅ Управление через инпуты инициализировано");
 }
 
 // ===== УПРАВЛЕНИЕ КАРТИНКАМИ ЧЕРЕЗ БЕЛЫЕ ПОЛЗУНКИ =====
 function initSliders() {
-  console.log("🔍 Инициализация белых ползунков...");
+  console.log("🔍 Инициализация слайдеров...");
+
+  function getValueFromMouse(e, track, min, max) {
+    const rect = track.getBoundingClientRect();
+    let x = e.clientX - rect.left;
+    x = Math.max(0, Math.min(rect.width, x));
+    return min + (x / rect.width) * (max - min);
+  }
+
+  function clamp(val, min, max) {
+    return Math.max(min, Math.min(max, val));
+  }
+
+  function updateThumb(thumb, track, value, min, max) {
+    if (!thumb || !track) return;
+
+    const rect = track.getBoundingClientRect();
+    const thumbW = thumb.offsetWidth;
+
+    const percent = (value - min) / (max - min);
+    const maxLeft = rect.width - thumbW;
+
+    const left = percent * maxLeft;
+    thumb.style.left = clamp(left, 0, maxLeft) + "px";
+  }
+
+  function bindSlider({ track, thumb, min, max, startValue, onChange }) {
+    if (!track || !thumb) return;
+
+    let dragging = false;
+    let value = startValue;
+
+    function setValue(v) {
+      value = clamp(v, min, max);
+      onChange(value);
+      updateThumb(thumb, track, value, min, max);
+    }
+
+    thumb.addEventListener("mousedown", (e) => {
+      e.preventDefault();
+      dragging = true;
+      thumb.style.cursor = "grabbing";
+    });
+
+    document.addEventListener("mousemove", (e) => {
+      if (!dragging) return;
+      const v = getValueFromMouse(e, track, min, max);
+      setValue(v);
+    });
+
+    document.addEventListener("mouseup", () => {
+      dragging = false;
+      thumb.style.cursor = "grab";
+    });
+
+    track.addEventListener("click", (e) => {
+      const v = getValueFromMouse(e, track, min, max);
+      setValue(v);
+    });
+
+    setValue(startValue);
+  }
 
   const curveGREY = document.querySelector(".curveGREY");
   const curvePURPLE = document.querySelector(".curvePURPLE");
 
-  // Элементы ползунков
   const emoWidthTrack = document.getElementById("emoWidthTrack");
   const emoWidthThumb = document.getElementById("emoWidthThumb");
+
   const emoLengthTrack = document.getElementById("emoLengthTrack");
   const emoLengthThumb = document.getElementById("emoLengthThumb");
+
   const neiroWidthTrack = document.getElementById("neiroWidthTrack");
   const neiroWidthThumb = document.getElementById("neiroWidthThumb");
+
   const neiroLengthTrack = document.getElementById("neiroLengthTrack");
   const neiroLengthThumb = document.getElementById("neiroLengthThumb");
 
-  if (!curveGREY || !curvePURPLE) {
-    console.warn("❌ curveGREY или curvePURPLE не найдены");
+  window.currentEmoWidth = 230;
+  window.currentEmoLength = 0;
+  window.currentNeiroWidth = 230;
+  window.currentNeiroLength = 0;
+
+  function updateStatus() {
+    updateConnectionStatus();
+  }
+
+  bindSlider({
+    track: emoWidthTrack,
+    thumb: emoWidthThumb,
+    min: 230,
+    max: 400,
+    startValue: window.currentEmoWidth,
+    onChange: (v) => {
+      window.currentEmoWidth = v;
+      if (curveGREY) {
+        curveGREY.style.width = v + "%";
+      }
+      updateStatus();
+    }
+  });
+
+  bindSlider({
+    track: emoLengthTrack,
+    thumb: emoLengthThumb,
+    min: -100,
+    max: 100,
+    startValue: window.currentEmoLength,
+    onChange: (v) => {
+      window.currentEmoLength = v;
+      if (curveGREY) {
+        curveGREY.style.transform = `translateX(${v}px)`;
+      }
+      updateStatus();
+    }
+  });
+
+  bindSlider({
+    track: neiroWidthTrack,
+    thumb: neiroWidthThumb,
+    min: 230,
+    max: 400,
+    startValue: window.currentNeiroWidth,
+    onChange: (v) => {
+      window.currentNeiroWidth = v;
+      if (curvePURPLE) {
+        curvePURPLE.style.width = v + "%";
+      }
+      updateStatus();
+    }
+  });
+
+  bindSlider({
+    track: neiroLengthTrack,
+    thumb: neiroLengthThumb,
+    min: -100,
+    max: 100,
+    startValue: window.currentNeiroLength,
+    onChange: (v) => {
+      window.currentNeiroLength = v;
+      if (curvePURPLE) {
+        curvePURPLE.style.transform = `translateX(${v}px)`;
+      }
+      updateStatus();
+    }
+  });
+
+  window.addEventListener("resize", () => {
+    updateThumb(emoWidthThumb, emoWidthTrack, window.currentEmoWidth, 230, 400);
+    updateThumb(
+      emoLengthThumb,
+      emoLengthTrack,
+      window.currentEmoLength,
+      -100,
+      100
+    );
+    updateThumb(
+      neiroWidthThumb,
+      neiroWidthTrack,
+      window.currentNeiroWidth,
+      230,
+      400
+    );
+    updateThumb(
+      neiroLengthThumb,
+      neiroLengthTrack,
+      window.currentNeiroLength,
+      -100,
+      100
+    );
+  });
+
+  updateStatus();
+}
+
+// ===== ФУНКЦИЯ ДЛЯ ИНИЦИАЛИЗАЦИИ КЛИКАБЕЛЬНЫХ СЕРДЕЧЕК =====
+function initClickableHearts() {
+  console.log("🔍 Инициализация кликабельных сердечек...");
+
+  const hearts = document.querySelectorAll(
+    ".heart1, .heart2, .heart3, .heart4"
+  );
+  const squarePink = document.querySelector(".squarePink");
+  const road0 = document.querySelector(".road0");
+  const noti004Top = document.querySelector(".NOTI-004-top");
+  const noti004Bottom = document.querySelector(".NOTI-004-bottom");
+  const noti004Mid = document.querySelector(".NOTI-004-mid");
+
+  if (!squarePink) {
+    console.error("❌ squarePink не найден");
     return;
   }
 
-  // Диапазоны значений
-  const EMO_WIDTH_MIN = 230;
-  const EMO_WIDTH_MAX = 400;
-  const EMO_LENGTH_MIN = -44;
-  const EMO_LENGTH_MAX = 0;
-  const NEIRO_WIDTH_MIN = 230;
-  const NEIRO_WIDTH_MAX = 400;
-  const NEIRO_LENGTH_MIN = -44;
-  const NEIRO_LENGTH_MAX = 0;
+  let disappearedHearts = 0;
+  const totalHearts = hearts.length;
+  let isRoad0Changed = false;
+  let isTextChanged = false;
 
-  // Функция для обновления позиции ползунка
-  function updateThumbPosition(thumb, track, value, min, max) {
-    if (!thumb || !track) return;
-    const trackRect = track.getBoundingClientRect();
-    const thumbWidth = thumb.offsetWidth;
-    const percent = (value - min) / (max - min);
-    const maxLeft = trackRect.width - thumbWidth;
-    const leftPos = percent * maxLeft;
-    thumb.style.left = Math.max(0, Math.min(maxLeft, leftPos)) + "px";
-  }
+  const colors = [
+    { start: "#929292", end: "#929292" },
+    { start: "#E6CBEB", end: "#D6ADD9" },
+    { start: "#F5D4FA", end: "#F2ABF8" },
+    { start: "#F8D2FF", end: "#E187E9" },
+    { start: "#F2C0FA", end: "#F36EFF" }
+  ];
 
-  // Функция для получения значения из позиции мыши
-  function getValueFromMouse(e, track, min, max) {
-    const trackRect = track.getBoundingClientRect();
-    let mouseX = e.clientX;
-    mouseX = Math.max(trackRect.left, Math.min(trackRect.right, mouseX));
-    const percent = (mouseX - trackRect.left) / trackRect.width;
-    return min + percent * (max - min);
-  }
+  function updateSquarePinkColor() {
+    const heartIndex = Math.min(disappearedHearts, totalHearts);
+    const colorSet = colors[heartIndex];
 
-  // ===== EMO ШИРИНА =====
-  if (emoWidthTrack && emoWidthThumb) {
-    let isDraggingEmoWidth = false;
+    if (disappearedHearts === 0) {
+      squarePink.style.background = colorSet.start;
+      squarePink.style.boxShadow = "none";
+    } else if (disappearedHearts === totalHearts) {
+      squarePink.style.background = `linear-gradient(30deg, ${colorSet.start}, ${colorSet.end})`;
+      squarePink.style.boxShadow = "0 0 15px rgba(218, 55, 233, 0.5)";
+      squarePink.style.transition = "all 0.5s ease";
 
-    function updateEmoWidth(value) {
-      value = Math.max(EMO_WIDTH_MIN, Math.min(EMO_WIDTH_MAX, value));
-      curveGREY.style.width = value + "%";
-      updateThumbPosition(
-        emoWidthThumb,
-        emoWidthTrack,
-        value,
-        EMO_WIDTH_MIN,
-        EMO_WIDTH_MAX
-      );
-      console.log("EMO ширина:", Math.round(value), "%");
+      if (road0 && !isRoad0Changed) {
+        changeRoad0Image();
+      }
+      if (!isTextChanged) {
+        changeNotificationText();
+      }
+    } else {
+      const intensity = disappearedHearts / totalHearts;
+      squarePink.style.background = `linear-gradient(30deg, ${colorSet.start}, ${colorSet.end})`;
+      squarePink.style.boxShadow = `0 0 ${5 + intensity * 10}px rgba(218, 55, 233, ${0.2 + intensity * 0.5})`;
+      squarePink.style.transition = "all 0.5s ease";
     }
 
-    emoWidthThumb.addEventListener("mousedown", function (e) {
+    console.log(`💖 Исчезнуло сердечек: ${disappearedHearts}/${totalHearts}`);
+  }
+
+  function changeRoad0Image() {
+    if (!road0) return;
+
+    road0.src = "images/road1.svg";
+    road0.style.transition = "opacity 0.5s ease";
+    road0.style.opacity = "0";
+
+    setTimeout(() => {
+      road0.style.opacity = "1";
+      isRoad0Changed = true;
+      console.log("🔄 Картинка road0 заменена на новую!");
+    }, 100);
+  }
+
+  function changeNotificationText() {
+    if (noti004Top) {
+      noti004Top.textContent = "NOTIFICATION-005";
+      noti004Top.style.transition = "all 0.3s ease";
+      noti004Top.style.color = "#7e7e7e";
+    }
+
+    if (noti004Mid) {
+      noti004Mid.textContent = "humanization // COMPLETED";
+      noti004Mid.style.transition = "all 0.3s ease";
+      noti004Mid.style.color = "#d4d4d4";
+    }
+
+    if (noti004Bottom) {
+      noti004Bottom.textContent =
+        "Департамент поздравляет тебя! Система восполнена человечностью!";
+      noti004Bottom.style.transition = "all 0.3s ease";
+      noti004Bottom.style.color = "#d4d4d4";
+      noti004Bottom.style.whiteSpace = "normal";
+      noti004Bottom.style.width = "20vw";
+      noti004Bottom.style.lineHeight = "1.5";
+    }
+
+    isTextChanged = true;
+    console.log("📝 Текст NOTI-004 обновлен!");
+
+    if (noti004Top) noti004Top.style.animation = "fadeInText 0.5s ease";
+    if (noti004Mid) noti004Mid.style.animation = "fadeInText 0.5s ease 0.1s";
+    if (noti004Bottom)
+      noti004Bottom.style.animation = "fadeInText 0.5s ease 0.2s";
+
+    setTimeout(() => {
+      if (noti004Top) noti004Top.style.animation = "";
+      if (noti004Mid) noti004Mid.style.animation = "";
+      if (noti004Bottom) noti004Bottom.style.animation = "";
+    }, 600);
+  }
+
+  function disappearHeart(heart) {
+    heart.style.transition = "opacity 0.3s ease, transform 0.3s ease";
+    heart.style.opacity = "0";
+    heart.style.transform = "scale(0)";
+
+    setTimeout(() => {
+      heart.style.display = "none";
+      disappearedHearts++;
+      updateSquarePinkColor();
+      console.log(
+        `💔 Сердечко исчезло! Осталось: ${totalHearts - disappearedHearts}`
+      );
+    }, 300);
+  }
+
+  hearts.forEach((heart, index) => {
+    if (!heart) return;
+
+    heart.style.cursor = "pointer";
+
+    heart.addEventListener("click", function (e) {
       e.preventDefault();
       e.stopPropagation();
-      isDraggingEmoWidth = true;
-      this.style.cursor = "grabbing";
-      console.log("Начали тянуть EMO ширину");
+
+      if (this.style.display === "none") return;
+
+      console.log(`❤️ Клик по сердечку ${index + 1}`);
+      disappearHeart(this);
     });
 
-    document.addEventListener("mousemove", function (e) {
-      if (!isDraggingEmoWidth) return;
-      e.preventDefault();
-      const value = getValueFromMouse(
-        e,
-        emoWidthTrack,
-        EMO_WIDTH_MIN,
-        EMO_WIDTH_MAX
-      );
-      updateEmoWidth(value);
-    });
-
-    document.addEventListener("mouseup", function () {
-      if (isDraggingEmoWidth) {
-        isDraggingEmoWidth = false;
-        emoWidthThumb.style.cursor = "grab";
-        console.log("Закончили тянуть EMO ширину");
+    heart.addEventListener("mouseenter", function () {
+      if (this.style.display !== "none") {
+        this.style.transform = "scale(1.1)";
+        this.style.transition = "transform 0.2s ease";
       }
     });
 
-    emoWidthTrack.addEventListener("click", function (e) {
-      const value = getValueFromMouse(
-        e,
-        emoWidthTrack,
-        EMO_WIDTH_MIN,
-        EMO_WIDTH_MAX
-      );
-      updateEmoWidth(value);
-    });
-
-    updateEmoWidth(230);
-  }
-
-  // ===== EMO ДЛИНА (БЛОКИРУЕМЫЙ ПОЛЗУНОК) =====
-  if (emoLengthTrack && emoLengthThumb) {
-    let isDraggingEmoLength = false;
-
-    // Функция для блокировки/разблокировки ползунка
-    function setEmoLengthLocked(locked) {
-      if (locked) {
-        emoLengthThumb.classList.add("disabled");
-        emoLengthThumb.style.cursor = "not-allowed";
-        emoLengthThumb.style.opacity = "0.5";
-        emoLengthTrack.style.cursor = "not-allowed";
-        console.log(
-          "🔒 Ползунок EMO длины заблокирован (достигнут минимум -44vw)"
-        );
-      } else {
-        emoLengthThumb.classList.remove("disabled");
-        emoLengthThumb.style.cursor = "grab";
-        emoLengthThumb.style.opacity = "1";
-        emoLengthTrack.style.cursor = "pointer";
-        console.log("🔓 Ползунок EMO длины разблокирован");
-      }
-    }
-
-    function updateEmoLength(value) {
-      // Проверяем, не заблокирован ли ползунок
-      if (
-        emoLengthThumb.classList.contains("disabled") &&
-        value > EMO_LENGTH_MIN
-      ) {
-        // Если заблокирован, но пытаемся двигать вверх - разрешаем
-        setEmoLengthLocked(false);
-      }
-
-      // Если значение достигает минимума - блокируем
-      if (value <= EMO_LENGTH_MIN) {
-        value = EMO_LENGTH_MIN;
-        setEmoLengthLocked(true);
-      } else {
-        // Если значение не минимальное - разблокируем (на случай, если было заблокировано)
-        if (emoLengthThumb.classList.contains("disabled")) {
-          setEmoLengthLocked(false);
-        }
-      }
-
-      value = Math.max(EMO_LENGTH_MIN, Math.min(EMO_LENGTH_MAX, value));
-      curveGREY.style.left = value + "vw";
-      updateThumbPosition(
-        emoLengthThumb,
-        emoLengthTrack,
-        value,
-        EMO_LENGTH_MIN,
-        EMO_LENGTH_MAX
-      );
-      console.log("EMO длина:", Math.round(value), "vw");
-    }
-
-    // Обработчик начала перетаскивания
-    emoLengthThumb.addEventListener("mousedown", function (e) {
-      // Если ползунок заблокирован - не даем его двигать
-      if (this.classList.contains("disabled")) {
-        e.preventDefault();
-        e.stopPropagation();
-        console.log("⛔ Ползунок EMO длины заблокирован, нельзя двигать");
-        return;
-      }
-
-      e.preventDefault();
-      e.stopPropagation();
-      isDraggingEmoLength = true;
-      this.style.cursor = "grabbing";
-      console.log("Начали тянуть EMO длину");
-    });
-
-    document.addEventListener("mousemove", function (e) {
-      if (!isDraggingEmoLength) return;
-      e.preventDefault();
-
-      // Получаем значение и обновляем
-      const value = getValueFromMouse(
-        e,
-        emoLengthTrack,
-        EMO_LENGTH_MIN,
-        EMO_LENGTH_MAX
-      );
-      updateEmoLength(value);
-    });
-
-    document.addEventListener("mouseup", function () {
-      if (isDraggingEmoLength) {
-        isDraggingEmoLength = false;
-        if (!emoLengthThumb.classList.contains("disabled")) {
-          emoLengthThumb.style.cursor = "grab";
-        }
-        console.log("Закончили тянуть EMO длину");
+    heart.addEventListener("mouseleave", function () {
+      if (this.style.display !== "none") {
+        this.style.transform = "scale(1)";
       }
     });
+  });
 
-    // Обработчик клика по треку
-    emoLengthTrack.addEventListener("click", function (e) {
-      // Если ползунок заблокирован - не реагируем на клик
-      if (emoLengthThumb.classList.contains("disabled")) {
-        console.log(
-          "⛔ Ползунок EMO длины заблокирован, клик по треку игнорируется"
-        );
-        return;
-      }
-
-      const value = getValueFromMouse(
-        e,
-        emoLengthTrack,
-        EMO_LENGTH_MIN,
-        EMO_LENGTH_MAX
-      );
-      updateEmoLength(value);
-    });
-
-    // Начальное обновление (значение по умолчанию -22, не минимальное)
-    updateEmoLength(-22);
-  }
-
-  // ===== NEIRO ШИРИНА =====
-  if (neiroWidthTrack && neiroWidthThumb) {
-    let isDraggingNeiroWidth = false;
-
-    function updateNeiroWidth(value) {
-      value = Math.max(NEIRO_WIDTH_MIN, Math.min(NEIRO_WIDTH_MAX, value));
-      curvePURPLE.style.width = value + "%";
-      updateThumbPosition(
-        neiroWidthThumb,
-        neiroWidthTrack,
-        value,
-        NEIRO_WIDTH_MIN,
-        NEIRO_WIDTH_MAX
-      );
-      console.log("NEIRO ширина:", Math.round(value), "%");
-    }
-
-    neiroWidthThumb.addEventListener("mousedown", function (e) {
-      e.preventDefault();
-      e.stopPropagation();
-      isDraggingNeiroWidth = true;
-      this.style.cursor = "grabbing";
-      console.log("Начали тянуть NEIRO ширину");
-    });
-
-    document.addEventListener("mousemove", function (e) {
-      if (!isDraggingNeiroWidth) return;
-      e.preventDefault();
-      const value = getValueFromMouse(
-        e,
-        neiroWidthTrack,
-        NEIRO_WIDTH_MIN,
-        NEIRO_WIDTH_MAX
-      );
-      updateNeiroWidth(value);
-    });
-
-    document.addEventListener("mouseup", function () {
-      if (isDraggingNeiroWidth) {
-        isDraggingNeiroWidth = false;
-        neiroWidthThumb.style.cursor = "grab";
-        console.log("Закончили тянуть NEIRO ширину");
-      }
-    });
-
-    neiroWidthTrack.addEventListener("click", function (e) {
-      const value = getValueFromMouse(
-        e,
-        neiroWidthTrack,
-        NEIRO_WIDTH_MIN,
-        NEIRO_WIDTH_MAX
-      );
-      updateNeiroWidth(value);
-    });
-
-    updateNeiroWidth(230);
-  }
-
-  // ===== NEIRO ДЛИНА =====
-  if (neiroLengthTrack && neiroLengthThumb) {
-    let isDraggingNeiroLength = false;
-
-    function updateNeiroLength(value) {
-      value = Math.max(NEIRO_LENGTH_MIN, Math.min(NEIRO_LENGTH_MAX, value));
-      curvePURPLE.style.left = value + "vw";
-      updateThumbPosition(
-        neiroLengthThumb,
-        neiroLengthTrack,
-        value,
-        NEIRO_LENGTH_MIN,
-        NEIRO_LENGTH_MAX
-      );
-      console.log("NEIRO длина:", Math.round(value), "vw");
-    }
-
-    neiroLengthThumb.addEventListener("mousedown", function (e) {
-      e.preventDefault();
-      e.stopPropagation();
-      isDraggingNeiroLength = true;
-      this.style.cursor = "grabbing";
-      console.log("Начали тянуть NEIRO длину");
-    });
-
-    document.addEventListener("mousemove", function (e) {
-      if (!isDraggingNeiroLength) return;
-      e.preventDefault();
-      const value = getValueFromMouse(
-        e,
-        neiroLengthTrack,
-        NEIRO_LENGTH_MIN,
-        NEIRO_LENGTH_MAX
-      );
-      updateNeiroLength(value);
-    });
-
-    document.addEventListener("mouseup", function () {
-      if (isDraggingNeiroLength) {
-        isDraggingNeiroLength = false;
-        neiroLengthThumb.style.cursor = "grab";
-        console.log("Закончили тянуть NEIRO длину");
-      }
-    });
-
-    neiroLengthTrack.addEventListener("click", function (e) {
-      const value = getValueFromMouse(
-        e,
-        neiroLengthTrack,
-        NEIRO_LENGTH_MIN,
-        NEIRO_LENGTH_MAX
-      );
-      updateNeiroLength(value);
-    });
-
-    updateNeiroLength(-22);
-  }
-
-  console.log("✅ Белые ползунки инициализированы");
+  console.log(`✅ Инициализировано ${totalHearts} кликабельных сердечек`);
 }
-// ===== ГЛАВНАЯ ФУНКЦИЯ =====
+
 // ===== ГЛАВНАЯ ФУНКЦИЯ =====
 window.addEventListener("load", function () {
-  console.log("✅ Страница полностью загружена");
-
   const data6 = document.querySelector(".data6");
   if (data6) {
     let percent = 0;
@@ -1586,18 +1602,12 @@ window.addEventListener("load", function () {
     initSlider1();
     initSlider2();
     initSlider3();
-
     initAllSlidersToSquares();
-
     initSaveButton();
-
     initLibrary();
-
     initClickableCircles();
-
-    // Вместо initInputControls используем initSliders
     initSliders();
-
+    initClickableHearts();
     console.log("🎉 Все системы запущены!");
   }, 500);
 });
