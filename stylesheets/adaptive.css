@@ -1,16 +1,8 @@
 @media (max-width: 768px) {
-  .First {
-    top: 20rem;
-  }
-  .words {
-    left: 50%;
-    transform: translateX(-50%);
-    gap: 1rem;
-  }
   .PROTOTYPE,
   .PROTOTYPE2,
   .PROTOTYPE3 {
-    font-size: 1rem;
+    font-size: 40vw;
     color: brown;
   }
 }
