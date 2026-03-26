@@ -86,6 +86,24 @@ body {
 .light-streak {
   pointer-events: none;
 }
+/* 3D секция */
+.three-d-section {
+  position: absolute;
+  top: 239vw;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 20;
+  background: #000000;
+}
+
+model-viewer {
+  width: 50%;
+  height: 50%;
+  background-color: #000000;
+}
+
+/* Кнопка показа 3D */
 
 .stage {
   position: absolute;
@@ -2161,113 +2179,4 @@ body.no-scroll {
 .base-grid,
 .light-streak {
   pointer-events: none !important;
-}
-/* ===== АДАПТИВ ДЛЯ 768px - ПОЛНЫЙ РАБОЧИЙ ВАРИАНТ ===== */
-@media screen and (max-width: 768px) {
-  /* Увеличиваем все шрифты */
-  .PROTOTYPE,
-  .PROTOTYPE3,
-  .PROTOTYPE2,
-  .data,
-  .data2,
-  .data3,
-  .data4,
-  .data5,
-  .data6,
-  .noti1-top,
-  .noti1-mid,
-  .noti1-bottom,
-  .slider-bottom-text1,
-  .slider-bottom-text1-2,
-  .slider-bottom-text2,
-  .slider-bottom-text2-2,
-  .slider-bottom-text3,
-  .slider-bottom-text3-2,
-  .library-up-text,
-  .amount,
-  .save-button,
-  .SYNTH,
-  .CONNECTION,
-  .Count2,
-  .data2-1,
-  .data2-2,
-  .data2-3,
-  .data2-4,
-  .data2-5,
-  .data2-6,
-  .noti03,
-  .notiDetail3,
-  .textDetail3,
-  .slider-label,
-  .HUMANIZATION,
-  .TakeItHumanization,
-  .TakeItHumanizationNumber,
-  .NOTI-004-top,
-  .NOTI-004-mid,
-  .NOTI-004-bottom {
-    font-size: 4vw !important;
-  }
-
-  /* Увеличиваем элементы */
-  .slider__element img,
-  .slider__element2 img,
-  .slider__element3 img {
-    width: 10vw !important;
-  }
-
-  .arrow1 img,
-  .arrow2 img,
-  .arrow3 img {
-    height: 8vw !important;
-    width: 8vw !important;
-  }
-
-  .square1,
-  .square2,
-  .square3 {
-    width: 10vw !important;
-    height: 10vw !important;
-  }
-
-  .circle1,
-  .circle2,
-  .circle3-1,
-  .circle3-2,
-  .circle3-3,
-  .circle3-4,
-  .circle3-5,
-  .circle3-6 {
-    width: 10vw !important;
-  }
-
-  /* Прогресс бары */
-  .progressDiv,
-  .progressDiv1,
-  .progressDiv2 {
-    width: 85vw !important;
-    left: 7.5vw !important;
-  }
-
-  /* Корректируем отступы */
-  .words {
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-  }
-
-  .words2 {
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-  }
-
-  .wordsThirdSection {
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    gap: 2vw !important;
-  }
-
-  /* Увеличиваем line-height для многострочных текстов */
-  .textDetail3,
-  .NOTI-004-bottom {
-    line-height: 6vw !important;
-  }
 }
