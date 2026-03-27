@@ -1,0 +1,239 @@
+@media (max-width: 768px) {
+  * {
+    box-sizing: border-box;
+  }
+
+  #circuit-svg {
+    width: 100%;
+    height: auto;
+    transform: translateY(-5vw) translateX(1vw) scale(1.5);
+    transform-origin: top center;
+    clip-path: inset(0 10vw 0 0);
+    z-index: -100000;
+  }
+
+  #grid-group path[d="M 0 921 L 100 921 L 153 921 L 251 921 "],
+  #light-group path[d="M 0 921 L 100 921 L 153 921 L 251 921 "],
+  #grid-group path[d="M 800 921 L 700 921 L 650 921 L 543 921 "],
+  #light-group path[d="M 800 921 L 700 921 L 650 921 L 543 921 "] {
+    transform: translateY(-5.7%);
+    transition: transform 0.3s ease;
+  }
+
+  path[d="M 0 1950 L 105 1950 L 138 1963 L 665 1963 L 688 1979 L 800 1979"],
+  #light-group
+    path[d="M 0 1950 L 105 1950 L 138 1963 L 665 1963 L 688 1979 L 800 1979"] {
+    transform: translateY(-17.7%);
+    transition: transform 0.3s ease;
+  }
+
+  .stage {
+    max-height: 330vw; /* Ограничиваем высоту */
+    overflow: hidden;
+  }
+  .header {
+    top: 28.5vw;
+    left: 30.9vw;
+  }
+
+  .logo {
+    width: 40vw;
+    height: auto;
+    max-width: 400px;
+  }
+
+  .First {
+    position: absolute;
+    top: 64.6vw;
+    left: 0;
+    right: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 100;
+    transform: scale(1.2);
+    transform-origin: center top; /* Масштабируем от верхнего центра */
+  }
+
+  .library {
+    top: 80.3vw;
+    left: 81vw;
+    transform: scale(1.3);
+    transform-origin: center top;
+  }
+
+  .save {
+    top: 107.8vw;
+    left: 81vw;
+    transform: scale(1.35);
+    transform-origin: center top;
+  }
+
+  /* экран подтверждения */
+  .overlay {
+    justify-content: center; /* ДОБАВЛЕНО */
+    align-items: center; /* ДОБАВЛЕНО */
+  }
+
+  .overlay.active {
+    display: flex;
+    opacity: 1;
+  }
+
+  .confirm-modal {
+    top: -9vw;
+    width: auto;
+    height: auto;
+    transform: scale(1.6);
+    transform-origin: center;
+  }
+
+  .confirm-modal img {
+    position: relative;
+    top: 0;
+    left: 0;
+    transform: none;
+    margin: 0 auto;
+  }
+
+  .modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    pointer-events: auto;
+  }
+  .Second {
+    position: absolute;
+    top: 140.4vw;
+    left: 0;
+    right: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: -2;
+    transform: scale(1.1);
+    transform-origin: center top;
+  }
+
+  .greyCircle {
+    top: -3.1vw;
+    left: 44.8vw;
+  }
+
+  .purpleCircle {
+    top: -3.1vw;
+    left: 50.6vw;
+  }
+
+  .Third {
+    position: absolute;
+    top: 207vw;
+    left: 0;
+    width: 100%;
+    min-height: 60vw;
+    z-index: -2;
+    transform: scale(1.1);
+    transform-origin: top center;
+  }
+
+  .NOTI1 {
+    transform: scale(1.13);
+    left: 14.3vw;
+  }
+
+  .NOTI003 {
+    top: 33.4vw;
+    left: 15.6vw;
+    transform: scale(1.1);
+  }
+
+  .NOTI-004 {
+    top: 7.5vw;
+    left: 36vw;
+    transform: scale(1.2);
+  }
+
+  .road0 {
+    width: 93vw;
+  }
+  .road1 {
+    width: 93vw;
+  }
+
+  @keyframes heartMove {
+    0% {
+      transform: translate(3vw, 4.3vw);
+    }
+    9% {
+      transform: translate(-70vw, 4.3vw); /* Меньше сдвиг */
+    }
+    18% {
+      transform: translate(-75vw, 1vw);
+    }
+    27% {
+      transform: translate(-77vw, -5vw);
+    }
+    36% {
+      transform: translate(-70vw, -12vw);
+    }
+    45% {
+      transform: translate(-14vw, -12vw);
+    }
+    54% {
+      transform: translate(-9vw, -15vw);
+    }
+    63% {
+      transform: translate(-7vw, -20vw);
+    }
+    72% {
+      transform: translate(-12vw, -28vw);
+    }
+    81% {
+      transform: translate(-74.5vw, -28vw);
+    }
+    100% {
+      transform: translate(-74.5vw, -45svw);
+    }
+  }
+
+  /* 3D секция */
+  .three-d-section {
+    position: absolute;
+    top: 280vw;
+    left: 13vw;
+    right: 0;
+    width: 75%;
+    z-index: 20;
+    padding: 40px 20px;
+    box-sizing: border-box;
+    pointer-events: none;
+    transform: scale(1.16); /* ДОБАВЛЕНО */
+    transform-origin: top center; /* ДОБАВЛЕНО */
+  }
+
+  .basement {
+    top: 340vw;
+    transform: scale(1.1); /* ДОБАВЛЕНО */
+    transform-origin: top center; /* ДОБАВЛЕНО */
+  }
+
+  body {
+    position: relative;
+    min-height: 100vh;
+    padding-bottom: 0;
+  }
+}
+
+@media (max-width: 414px) {
+  * {
+    box-sizing: border-box;
+  }
+  #circuit-svg {
+    width: 100%;
+    height: auto;
+    transform: translateY(-5vw) translateX(1vw) scale(1.5);
+    transform-origin: top center;
+    clip-path: inset(0 10vw 0 0);
+    z-index: -100000;
+  }
+}
