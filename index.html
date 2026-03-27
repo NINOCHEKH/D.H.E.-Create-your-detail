@@ -14,7 +14,7 @@
   </head>
   <body>
     <div class="stage">
-      <svg viewBox="0 0 800 2000" id="circuit-svg">
+      <svg viewBox="0 0 800 2500" id="circuit-svg">
         <g id="grid-group" class="base-grid"></g>
         <g id="light-group"></g>
       </svg>
@@ -342,7 +342,55 @@
 
     <!-- 3D секция -->
     <section class="three-d-section">
-      <model-viewer src="build.glb" auto-rotate camera-controls> </model-viewer>
+      <div class="three-d-frame">
+        <div class="three-d-content">
+          <model-viewer
+            src="build.glb"
+            auto-rotate
+            camera-controls
+            touch-action="pan-y"
+            auto-rotate-delay="0"
+            rotation-per-second="30deg"
+            camera-orbit="45deg 75deg 50m"
+            field-of-view="30deg"
+            shadow-intensity="1"
+            style="width: 100%; height: 100%; background-color: #000000"
+          >
+            <div class="progress-bar hide" slot="progress-bar">
+              <div class="update-bar"></div>
+            </div>
+          </model-viewer>
+        </div>
+      </div>
+    </section>
+
+    <section class="basement">
+      <div class="basement-words">
+        <p class="basement-data">
+          <span id="num1">64</span>-<span id="num2">3435</span> vol.14
+        </p>
+        <p class="basement-data2">humanization-D.H.E.-FOR-THE-FUTURE-GROUP</p>
+        <p class="basement-data3">//</p>
+        <p class="basement-data4">
+          <span id="num3">543</span>-<span id="num4">6</span>-<span id="num5"
+            >145</span
+          >
+        </p>
+        <p class="basement-data5"><span id="num6">092</span></p>
+        <p class="basement-data6">>>></p>
+        <p class="basement-data7">you-cannot-escape</p>
+      </div>
+      <p class="basement-data8">student-model: <span></span>нино-чехерия</p>
+      <p class="basement-data8-1">
+        teacher-model:<span></span> николай-цветников
+      </p>
+      <img class="circleBasement" src="images/circleBasement.svg" />
+      <img class="circleBasement1" src="images/circleBasement.svg" />
+      <img class="circleBasement2" src="images/circleBasement.svg" />
+      <img class="circleBasement3" src="images/circleBasement.svg" />
+      <img class="small-circleBasement" src="images/small-circleBasement.svg" />
+      <img class="lineBasement" src="images/lineBasement.svg" />
+      <img class="backBasement" src="images/basement.svg" />
     </section>
 
     <script src="javascripts/scripts.js"></script>

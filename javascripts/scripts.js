@@ -28,6 +28,9 @@ const d20 = "M 0 921 L 100 921 L 153 921 L 251 921 ";
 const d21 = "M 800 921 L 700 921 L 650 921 L 543 921 ";
 const d22 = "M 0 847 L 33 847 L 33 1349 L 70 1370 L 70 1516 L 0 1516";
 const d23 = "M 800 847 L 769 847 L 769 1349 L 732 1370 L 732 1516 L 800 1516";
+const d24 = "M 0 1838 L 30 1838 L 58 1866 L 58 2280 L 30 2310 L 30 2550";
+const d25 = "M 0 1950 L 105 1950 L 138 1963 L 665 1963 L 688 1979 L 800 1979";
+const d26 = "M 800 2135 L 780 2135 L 750 2165 L 750 2550 ";
 
 function createTwoTechLines() {
   gridGroup.innerHTML = "";
@@ -56,7 +59,10 @@ function createTwoTechLines() {
     d20,
     d21,
     d22,
-    d23
+    d23,
+    d24,
+    d25,
+    d26
   ].forEach((d, index) => {
     const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
     path.setAttribute("d", d);
@@ -1577,6 +1583,20 @@ function initClickableHearts() {
   });
 
   console.log(`✅ Инициализировано ${totalHearts} кликабельных сердечек`);
+}
+
+const modelViewer = document.querySelector("model-viewer");
+if (modelViewer) {
+  modelViewer.addEventListener("load", () => {
+    // Получить модель
+    const model = modelViewer.model;
+
+    // Найти и скрыть finger1
+    const finger1 = model.querySelector('[name="finger1"]');
+    if (finger1) {
+      finger1.visible = false;
+    }
+  });
 }
 
 // ===== ГЛАВНАЯ ФУНКЦИЯ =====
