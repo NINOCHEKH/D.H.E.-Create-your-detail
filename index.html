@@ -82,7 +82,13 @@
       <div class="slider-bottom">
         <p class="slider-bottom-text1">НАСТРОЙКИ-DETAIL</p>
         <p class="slider-bottom-text1-2">01</p>
-        <img src="images/Sector1.svg" alt="Sector" />
+        <picture>
+          <source
+            media="(max-width: 414px)"
+            srcset="images/mobileDetails.svg"
+          />
+          <img src="images/Sector1.svg" alt="Sector" />
+        </picture>
       </div>
 
       <!-- розовый слайдер -->
@@ -110,7 +116,13 @@
       <div class="slider-bottom2">
         <p class="slider-bottom-text2">НАСТРОЙКИ-DETAIL</p>
         <p class="slider-bottom-text2-2">02</p>
-        <img src="images/Sector2.svg" alt="Sector" />
+        <picture>
+          <source
+            media="(max-width: 414px)"
+            srcset="images/mobileDetails2.svg"
+          />
+          <img src="images/Sector2.svg" alt="Sector" />
+        </picture>
       </div>
 
       <!-- очень фиолетовый слайдер -->
@@ -138,10 +150,25 @@
       <div class="slider-bottom3">
         <p class="slider-bottom-text3">НАСТРОЙКИ-DETAIL</p>
         <p class="slider-bottom-text3-2">03</p>
-        <img src="images/Sector3.svg" />
+        <picture>
+          <source
+            media="(max-width: 414px)"
+            srcset="images/mobileDetails3.svg"
+          />
+          <img src="images/Sector3.svg" alt="Sector" />
+        </picture>
       </div>
 
-      <img class="top1" src="images/1.png" alt="" />
+      <picture>
+        <source
+          media="(max-width: 414px)"
+          srcset="images/mobileSector1.svg"
+          class="mobile-sector1"
+        />
+        <source media="(max-width: 768px)" srcset="images/1.png" />
+        <source media="(max-width: 1920px)" srcset="images/1.png" />
+        <img class="top1" src="images/1.png" alt="" />
+      </picture>
 
       <!-- кружочки -->
       <section>
@@ -305,7 +332,15 @@
         <p class="TakeItHumanization">ЗАБЕРИ-ЧЕЛОВЕЧНОСТЬ-В-СИСТЕМУ</p>
         <p class="TakeItHumanizationNumber">0.0-2</p>
       </div>
-      <img class="interface3-image" src="images/humanizationHeader.svg" />
+      <picture>
+        <source media="(max-width: 414px)" srcset="images/mobileSector1.svg" />
+        <img
+          class="interface3-image"
+          src="images/humanizationHeader.svg"
+          alt=""
+        />
+      </picture>
+      />
       <div class="squarePink"></div>
       <div class="NOTI-004">
         <p class="NOTI-004-top">NOTIFICATION-004</p>
@@ -316,7 +351,10 @@
         </p>
         <img class="NOTI-004-image" src="images/NOTI004.svg" alt="" />
       </div>
-      <img class="road0" src="images/road0.svg" />
+      <picture id="roadPicture">
+        <source media="(max-width: 414px)" srcset="images/mobileRoad.svg" />
+        <img class="road0" src="images/road0.svg" alt="" />
+      </picture>
 
       <!-- heart1 теперь внутри Third -->
       <div class="heart1">

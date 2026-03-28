@@ -1428,6 +1428,10 @@ function initSliders() {
 }
 
 // ===== ФУНКЦИЯ ДЛЯ ИНИЦИАЛИЗАЦИИ КЛИКАБЕЛЬНЫХ СЕРДЕЧЕК =====
+let disappearedHearts = 0;
+let totalHearts = 0;
+let allHeartsCollected = false;
+
 function initClickableHearts() {
   console.log("🔍 Инициализация кликабельных сердечек...");
 
@@ -1435,7 +1439,6 @@ function initClickableHearts() {
     ".heart1, .heart2, .heart3, .heart4"
   );
   const squarePink = document.querySelector(".squarePink");
-  const road0 = document.querySelector(".road0");
   const noti004Top = document.querySelector(".NOTI-004-top");
   const noti004Bottom = document.querySelector(".NOTI-004-bottom");
   const noti004Mid = document.querySelector(".NOTI-004-mid");
@@ -1445,10 +1448,8 @@ function initClickableHearts() {
     return;
   }
 
-  let disappearedHearts = 0;
-  const totalHearts = hearts.length;
-  let isRoad0Changed = false;
-  let isTextChanged = false;
+  disappearedHearts = 0;
+  totalHearts = hearts.length;
 
   const colors = [
     { start: "#929292", end: "#929292" },
@@ -1470,9 +1471,6 @@ function initClickableHearts() {
       squarePink.style.boxShadow = "0 0 15px rgba(218, 55, 233, 0.5)";
       squarePink.style.transition = "all 0.5s ease";
 
-      if (road0 && !isRoad0Changed) {
-        changeRoad0Image();
-      }
       if (!isTextChanged) {
         changeNotificationText();
       }
@@ -1484,20 +1482,6 @@ function initClickableHearts() {
     }
 
     console.log(`💖 Исчезнуло сердечек: ${disappearedHearts}/${totalHearts}`);
-  }
-
-  function changeRoad0Image() {
-    if (!road0) return;
-
-    road0.src = "images/road1.svg";
-    road0.style.transition = "opacity 0.5s ease";
-    road0.style.opacity = "0";
-
-    setTimeout(() => {
-      road0.style.opacity = "1";
-      isRoad0Changed = true;
-      console.log("🔄 Картинка road0 заменена на новую!");
-    }, 100);
   }
 
   function changeNotificationText() {
@@ -1547,6 +1531,7 @@ function initClickableHearts() {
       heart.style.display = "none";
       disappearedHearts++;
       updateSquarePinkColor();
+      checkAllHeartsCollected();
       console.log(
         `💔 Сердечко исчезло! Осталось: ${totalHearts - disappearedHearts}`
       );
@@ -1585,13 +1570,73 @@ function initClickableHearts() {
   console.log(`✅ Инициализировано ${totalHearts} кликабельных сердечек`);
 }
 
+let isTextChanged = false;
+
+// ===== ФУНКЦИЯ ДЛЯ СМЕНЫ КАРТИНКИ ДОРОГИ =====
+function changeRoadImage() {
+  const roadPicture = document.getElementById("roadPicture");
+  if (!roadPicture) {
+    console.log("❌ roadPicture не найден");
+    return;
+  }
+
+  const source = roadPicture.querySelector("source");
+  const img = roadPicture.querySelector("img");
+
+  if (!source || !img) {
+    console.log("❌ source или img не найдены");
+    return;
+  }
+
+  if (window.innerWidth <= 414) {
+    // Мобильная версия
+    if (allHeartsCollected) {
+      source.srcset = "images/mobileRoadPink.svg";
+      console.log("🔄 Меняем дорогу на mobileRoadPink.svg");
+    } else {
+      source.srcset = "images/mobileRoad.svg";
+    }
+    // Принудительно обновляем картинку
+    img.src = source.srcset;
+  } else {
+    // Десктоп версия
+    if (allHeartsCollected) {
+      img.src = "images/road1.svg";
+      console.log("🔄 Меняем дорогу на road1.svg");
+    } else {
+      img.src = "images/road0.svg";
+    }
+  }
+}
+
+// ===== ФУНКЦИЯ ДЛЯ ПРОВЕРКИ СОБРАНЫ ЛИ ВСЕ СЕРДЕЧКИ =====
+function checkAllHeartsCollected() {
+  const hearts = document.querySelectorAll(
+    ".heart1, .heart2, .heart3, .heart4"
+  );
+  let collectedCount = 0;
+
+  hearts.forEach((heart) => {
+    if (heart.style.display === "none") {
+      collectedCount++;
+    }
+  });
+
+  const wasCollected = allHeartsCollected;
+  allHeartsCollected = collectedCount === hearts.length;
+
+  if (allHeartsCollected && !wasCollected) {
+    changeRoadImage();
+    console.log("❤️ Все сердечки собраны! Дорога меняется на розовую");
+  }
+
+  return allHeartsCollected;
+}
+
 const modelViewer = document.querySelector("model-viewer");
 if (modelViewer) {
   modelViewer.addEventListener("load", () => {
-    // Получить модель
     const model = modelViewer.model;
-
-    // Найти и скрыть finger1
     const finger1 = model.querySelector('[name="finger1"]');
     if (finger1) {
       finger1.visible = false;
@@ -1628,6 +1673,15 @@ window.addEventListener("load", function () {
     initClickableCircles();
     initSliders();
     initClickableHearts();
+
+    // Проверяем состояние при загрузке
+    setTimeout(() => {
+      checkAllHeartsCollected();
+    }, 1000);
+
     console.log("🎉 Все системы запущены!");
   }, 500);
+
+  // Слушаем изменение размера окна
+  window.addEventListener("resize", changeRoadImage);
 });
