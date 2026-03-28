@@ -111,8 +111,6 @@ function pauseLineAnimation(index) {
   targetLine.classList.add("paused");
   targetLine.style.animation = "none";
   targetLine.style.opacity = "0.1";
-
-  console.log(`Линия ${index + 1}`);
 }
 
 function resumeLineAnimation(index) {
@@ -124,8 +122,6 @@ function resumeLineAnimation(index) {
   targetLine.classList.remove("paused");
   targetLine.style.animation = targetLine.dataset.originalAnimation || "";
   targetLine.style.opacity = targetLine.dataset.originalOpacity || "";
-
-  console.log(`Линия ${index + 1} возобновлена`);
 }
 
 function launchPulse() {
@@ -280,8 +276,6 @@ function updateConnectionStatus() {
 
 // слайдеры
 function initSlider1() {
-  console.log("🔍 Поиск элементов слайдера 1...");
-
   const slider1 = document.querySelector(".slider");
   if (!slider1) {
     return;
@@ -373,8 +367,6 @@ function initSlider2() {
 }
 
 function initSlider3() {
-  console.log("🔍 Поиск элементов слайдера 3...");
-
   const slider3 = document.querySelector(".slider3");
   if (!slider3) {
     return;
@@ -422,8 +414,6 @@ function initSlider3() {
 
 // картиночки в квадратах
 function initAllSlidersToSquares() {
-  console.log("🔍 Инициализация вставки картинок из слайдеров в квадраты...");
-
   const slider1Images = document.querySelectorAll(
     ".slider .slider__element img"
   );
@@ -960,8 +950,6 @@ function initSaveButton() {
 
 // библиотека
 function initLibrary() {
-  console.log("🔍 Инициализация библиотеки сохранений...");
-
   const library = document.querySelector(".library");
 
   const oldContainer = document.querySelector(".saved-items-container");
@@ -1096,8 +1084,6 @@ function initLibrary() {
       currentPage = Math.floor((savedItems.length - 1) / itemsPerPage);
 
       updateLibraryDisplay();
-
-      console.log();
     })();
   }
 
@@ -1124,8 +1110,6 @@ function initLibrary() {
 
 // прохождение синхронизации серые кружочки
 function initClickableCircles() {
-  console.log("🔍 Инициализация кликабельных кругов...");
-
   const circles = [
     document.querySelector(".circle-click1"),
     document.querySelector(".circle-click2"),
@@ -1186,8 +1170,6 @@ function initClickableCircles() {
 
 // ===== УПРАВЛЕНИЕ КАРТИНКАМИ ЧЕРЕЗ БЕЛЫЕ ПОЛЗУНКИ =====
 function initSliders() {
-  console.log("🔍 Инициализация слайдеров...");
-
   function getValueFromMouse(e, track, min, max) {
     const rect = track.getBoundingClientRect();
     let x = e.clientX - rect.left;
@@ -1461,7 +1443,6 @@ function initClickableHearts() {
       disappearedHearts++;
       updateSquarePinkColor();
       checkAllHeartsCollected();
-      console.log();
     }, 300);
   }
 
