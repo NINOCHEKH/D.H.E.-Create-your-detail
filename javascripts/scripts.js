@@ -154,7 +154,6 @@ setInterval(() => {
   launchPulse();
 }, 200);
 
-// ===== ФУНКЦИЯ ДЛЯ ОБНОВЛЕНИЯ ТЕКСТА CONNECTION =====
 function updateConnectionText() {
   const connectionElement = document.querySelector(".CONNECTION");
   const progressDiv2 = document.querySelector(".progressDiv2");
@@ -175,7 +174,6 @@ function updateConnectionText() {
       setTimeout(() => {
         connectionElement.style.animation = "";
       }, 500);
-      console.log("✅ CONNECTION: DONE! - Прогресс достиг 100%");
     }
   } else {
     if (connectionElement.textContent !== "CONNECTION") {
@@ -183,12 +181,11 @@ function updateConnectionText() {
       connectionElement.classList.remove("done");
       connectionElement.style.color = "#000000";
       connectionElement.style.textShadow = "none";
-      console.log("🔄 CONNECTION - Прогресс меньше 100%");
     }
   }
 }
 
-// ===== ФУНКЦИЯ ДЛЯ ОБНОВЛЕНИЯ ПРОГРЕСС БАРА =====
+// прогресс бар
 function updateProgressBar() {
   const progressDiv2 = document.querySelector(".progressDiv2");
   const statusElement = document.querySelector(".data2-4");
@@ -223,14 +220,10 @@ function updateProgressBar() {
     progressDiv2.style.boxShadow = "none";
   }
 
-  console.log(
-    `📊 Прогресс бар: ${targetPercent.toFixed(1)}% (${newWidthVw.toFixed(1)}vw) | Круги: ${activeCirclesCount}/12 | Статус: ${status}`
-  );
-
   updateConnectionText();
 }
 
-// ===== ФУНКЦИЯ ОЦЕНКИ СОСТОЯНИЯ =====
+// состояние
 function updateConnectionStatus() {
   const statusElement = document.querySelector(".data2-4");
   const progressDiv = document.querySelector(".progress");
@@ -241,7 +234,6 @@ function updateConnectionStatus() {
   const emoLength = window.currentEmoLength || 0;
   const neiroWidth = window.currentNeiroWidth || 230;
   const neiroLength = window.currentNeiroLength || 0;
-
   const emoWidthNorm = (emoWidth - 230) / (400 - 230);
   const emoLengthNorm = (emoLength + 100) / 200;
   const neiroWidthNorm = (neiroWidth - 230) / (400 - 230);
@@ -281,22 +273,17 @@ function updateConnectionStatus() {
     progressDiv.style.transition = "background-color 0.3s ease";
   }
 
-  console.log(
-    `📊 Статус соединения: ${status} (рейтинг: ${totalRating.toFixed(3)})`
-  );
-
   updateProgressBar();
 
   return { status, totalRating, statusColor, progressColor };
 }
 
-// ===== ВСЕ СЛАЙДЕРЫ =====
+// слайдеры
 function initSlider1() {
   console.log("🔍 Поиск элементов слайдера 1...");
 
   const slider1 = document.querySelector(".slider");
   if (!slider1) {
-    console.error("❌ Слайдер 1: контейнер .slider не найден");
     return;
   }
 
@@ -306,7 +293,6 @@ function initSlider1() {
   const slides = slider1.querySelectorAll(".slider__element");
 
   if (!nextBtn || !prevBtn || !sliderList || slides.length === 0) {
-    console.error("❌ Слайдер 1: элементы не найдены!");
     return;
   }
 
@@ -320,7 +306,6 @@ function initSlider1() {
   const newPrevBtn = prevBtn.cloneNode(true);
   nextBtn.replaceWith(newNextBtn);
   prevBtn.replaceWith(newPrevBtn);
-
   const finalNextBtn = slider1.querySelector(".slider__next");
   const finalPrevBtn = slider1.querySelector(".slider__prev");
 
@@ -339,15 +324,11 @@ function initSlider1() {
   });
 
   updateSlider();
-  console.log("✅ Слайдер 1 инициализирован");
 }
 
 function initSlider2() {
-  console.log("🔍 Поиск элементов слайдера 2...");
-
   const slider2 = document.querySelector(".slider2");
   if (!slider2) {
-    console.error("❌ Слайдер 2: контейнер .slider2 не найден");
     return;
   }
 
@@ -357,7 +338,6 @@ function initSlider2() {
   const slides2 = slider2.querySelectorAll(".slider__element2");
 
   if (!nextBtn2 || !prevBtn2 || !sliderList2 || slides2.length === 0) {
-    console.error("❌ Слайдер 2: элементы не найдены!");
     return;
   }
 
@@ -390,7 +370,6 @@ function initSlider2() {
   });
 
   updateSlider2();
-  console.log("✅ Слайдер 2 инициализирован");
 }
 
 function initSlider3() {
@@ -398,7 +377,6 @@ function initSlider3() {
 
   const slider3 = document.querySelector(".slider3");
   if (!slider3) {
-    console.error("❌ Слайдер 3: контейнер .slider3 не найден");
     return;
   }
 
@@ -408,7 +386,6 @@ function initSlider3() {
   const slides3 = slider3.querySelectorAll(".slider__element3");
 
   if (!nextBtn3 || !prevBtn3 || !sliderList3 || slides3.length === 0) {
-    console.error("❌ Слайдер 3: элементы не найдены!");
     return;
   }
 
@@ -441,7 +418,6 @@ function initSlider3() {
   });
 
   updateSlider3();
-  console.log("✅ Слайдер 3 инициализирован");
 }
 
 // картиночки в квадратах
@@ -456,8 +432,6 @@ function initAllSlidersToSquares() {
   let currentSelectedImg1 = null;
 
   if (square1 && slider1Images.length > 0) {
-    console.log("✅ Слайдер 1: найдено", slider1Images.length, "картинок");
-
     function resetHighlights1() {
       slider1Images.forEach((img) => {
         img.style.filter = "none";
@@ -470,8 +444,6 @@ function initAllSlidersToSquares() {
       img.addEventListener("click", function (e) {
         e.preventDefault();
         e.stopPropagation();
-
-        console.log(`🖱️ Слайдер 1: клик по pic${index + 1}`);
 
         if (window.deactivateSavedState) {
           window.deactivateSavedState();
@@ -500,7 +472,6 @@ function initAllSlidersToSquares() {
 
         if (arrow1) {
           arrow1.classList.add("hidden");
-          console.log("✅ Стрелка 1 скрыта");
         }
       });
     });
@@ -509,15 +480,11 @@ function initAllSlidersToSquares() {
       e.preventDefault();
       e.stopPropagation();
 
-      console.log("🖱️ Клик по square1");
-
       if (window.deactivateSavedState) {
         window.deactivateSavedState();
       }
 
       if (this.children.length > 0) {
-        console.log("✅ Картинка найдена, удаляем");
-
         this.innerHTML = "";
 
         if (currentSelectedImg1) {
@@ -529,7 +496,6 @@ function initAllSlidersToSquares() {
 
         if (arrow1) {
           arrow1.classList.remove("hidden");
-          console.log("✅ Стрелка 1 возвращена");
         }
 
         this.style.boxShadow = "0 0 8px #ffffffff";
@@ -537,11 +503,9 @@ function initAllSlidersToSquares() {
           this.style.boxShadow = "none";
         }, 250);
       } else {
-        console.log("ℹ️ Квадрат уже пуст");
       }
     });
   } else {
-    console.log("❌ Слайдер 1: square1 или картинки не найдены");
   }
 
   const slider2Images = document.querySelectorAll(
@@ -552,8 +516,6 @@ function initAllSlidersToSquares() {
   let currentSelectedImg2 = null;
 
   if (square2 && slider2Images.length > 0) {
-    console.log("✅ Слайдер 2: найдено", slider2Images.length, "картинок");
-
     function resetHighlights2() {
       slider2Images.forEach((img) => {
         img.style.filter = "none";
@@ -566,8 +528,6 @@ function initAllSlidersToSquares() {
       img.addEventListener("click", function (e) {
         e.preventDefault();
         e.stopPropagation();
-
-        console.log(`🖱️ Слайдер 2: клик по pic${index + 1}`);
 
         if (window.deactivateSavedState) {
           window.deactivateSavedState();
@@ -592,7 +552,6 @@ function initAllSlidersToSquares() {
 
         if (arrow2) {
           arrow2.classList.add("hidden");
-          console.log("✅ Стрелка 2 скрыта");
         }
       });
     });
@@ -600,8 +559,6 @@ function initAllSlidersToSquares() {
     square2.addEventListener("click", function (e) {
       e.preventDefault();
       e.stopPropagation();
-
-      console.log("🖱️ Клик по square2");
 
       if (window.deactivateSavedState) {
         window.deactivateSavedState();
@@ -619,7 +576,6 @@ function initAllSlidersToSquares() {
 
         if (arrow2) {
           arrow2.classList.remove("hidden");
-          console.log("✅ Стрелка 2 возвращена");
         }
 
         this.style.boxShadow = "0 0 8px #ffffffff";
@@ -629,7 +585,6 @@ function initAllSlidersToSquares() {
       }
     });
   } else {
-    console.log("❌ Слайдер 2: square2 или картинки не найдены");
   }
 
   const slider3Images = document.querySelectorAll(
@@ -640,8 +595,6 @@ function initAllSlidersToSquares() {
   let currentSelectedImg3 = null;
 
   if (square3 && slider3Images.length > 0) {
-    console.log("✅ Слайдер 3: найдено", slider3Images.length, "картинок");
-
     function resetHighlights3() {
       slider3Images.forEach((img) => {
         img.style.filter = "none";
@@ -654,8 +607,6 @@ function initAllSlidersToSquares() {
       img.addEventListener("click", function (e) {
         e.preventDefault();
         e.stopPropagation();
-
-        console.log(`🖱️ Слайдер 3: клик по pic${index + 1}`);
 
         if (window.deactivateSavedState) {
           window.deactivateSavedState();
@@ -680,7 +631,6 @@ function initAllSlidersToSquares() {
 
         if (arrow3) {
           arrow3.classList.add("hidden");
-          console.log("✅ Стрелка 3 скрыта");
         }
       });
     });
@@ -688,8 +638,6 @@ function initAllSlidersToSquares() {
     square3.addEventListener("click", function (e) {
       e.preventDefault();
       e.stopPropagation();
-
-      console.log("🖱️ Клик по square3");
 
       if (window.deactivateSavedState) {
         window.deactivateSavedState();
@@ -707,7 +655,6 @@ function initAllSlidersToSquares() {
 
         if (arrow3) {
           arrow3.classList.remove("hidden");
-          console.log("✅ Стрелка 3 возвращена");
         }
 
         this.style.boxShadow = "0 0 8px #ffffffff";
@@ -717,10 +664,7 @@ function initAllSlidersToSquares() {
       }
     });
   } else {
-    console.log("❌ Слайдер 3: square3 или картинки не найдены");
   }
-
-  console.log("✅ Все слайдеры настроены на вставку в квадраты!");
 }
 
 // сохранение
@@ -823,9 +767,8 @@ function initSaveButton() {
     document.body.classList.remove("no-scroll");
   }
 
+  // сохранение комбинации деталей
   async function saveCombination() {
-    console.log("💾 Сохраняем комбинацию...");
-
     const canvas = document.createElement("canvas");
     const ctx = canvas.getContext("2d");
     canvas.width = 1920;
@@ -963,8 +906,6 @@ function initSaveButton() {
     link.href = imageData;
     link.click();
 
-    console.log("✅ Комбинация сохранена!");
-
     if (window.addToLibrary) {
       window.addToLibrary(imageData, square1Img, square2Img, square3Img);
     }
@@ -1015,11 +956,9 @@ function initSaveButton() {
   observer.observe(square3, { childList: true, subtree: true });
 
   updateButtonState();
-
-  console.log("✅ Кнопка сохранения инициализирована");
 }
 
-// ===== БИБЛИОТЕКА СОХРАНЕНИЙ =====
+// библиотека
 function initLibrary() {
   console.log("🔍 Инициализация библиотеки сохранений...");
 
@@ -1158,9 +1097,7 @@ function initLibrary() {
 
       updateLibraryDisplay();
 
-      console.log(
-        `✅ Сохранение добавлено. Всего: ${savedItems.length}, страниц: ${totalPages}`
-      );
+      console.log();
     })();
   }
 
@@ -1183,11 +1120,9 @@ function initLibrary() {
   window.addToLibrary = addSavedItem;
 
   updateLibraryDisplay();
-
-  console.log("✅ Библиотека сохранений инициализирована");
 }
 
-// ===== КЛИКАБЕЛЬНЫЕ КРУГИ И СЧЕТЧИК =====
+// прохождение синхронизации серые кружочки
 function initClickableCircles() {
   console.log("🔍 Инициализация кликабельных кругов...");
 
@@ -1227,7 +1162,6 @@ function initClickableCircles() {
 
   circles.forEach((circle, index) => {
     if (!circle) {
-      console.warn(`Круг ${index + 1} не найден`);
       return;
     }
 
@@ -1427,14 +1361,12 @@ function initSliders() {
   updateStatus();
 }
 
-// ===== ФУНКЦИЯ ДЛЯ ИНИЦИАЛИЗАЦИИ КЛИКАБЕЛЬНЫХ СЕРДЕЧЕК =====
+// сердечки
 let disappearedHearts = 0;
 let totalHearts = 0;
 let allHeartsCollected = false;
 
 function initClickableHearts() {
-  console.log("🔍 Инициализация кликабельных сердечек...");
-
   const hearts = document.querySelectorAll(
     ".heart1, .heart2, .heart3, .heart4"
   );
@@ -1444,7 +1376,6 @@ function initClickableHearts() {
   const noti004Mid = document.querySelector(".NOTI-004-mid");
 
   if (!squarePink) {
-    console.error("❌ squarePink не найден");
     return;
   }
 
@@ -1480,10 +1411,9 @@ function initClickableHearts() {
       squarePink.style.boxShadow = `0 0 ${5 + intensity * 10}px rgba(218, 55, 233, ${0.2 + intensity * 0.5})`;
       squarePink.style.transition = "all 0.5s ease";
     }
-
-    console.log(`💖 Исчезнуло сердечек: ${disappearedHearts}/${totalHearts}`);
   }
 
+  // ноти после сердечек
   function changeNotificationText() {
     if (noti004Top) {
       noti004Top.textContent = "NOTIFICATION-005";
@@ -1508,7 +1438,6 @@ function initClickableHearts() {
     }
 
     isTextChanged = true;
-    console.log("📝 Текст NOTI-004 обновлен!");
 
     if (noti004Top) noti004Top.style.animation = "fadeInText 0.5s ease";
     if (noti004Mid) noti004Mid.style.animation = "fadeInText 0.5s ease 0.1s";
@@ -1532,9 +1461,7 @@ function initClickableHearts() {
       disappearedHearts++;
       updateSquarePinkColor();
       checkAllHeartsCollected();
-      console.log(
-        `💔 Сердечко исчезло! Осталось: ${totalHearts - disappearedHearts}`
-      );
+      console.log();
     }, 300);
   }
 
@@ -1549,7 +1476,6 @@ function initClickableHearts() {
 
       if (this.style.display === "none") return;
 
-      console.log(`❤️ Клик по сердечку ${index + 1}`);
       disappearHeart(this);
     });
 
@@ -1566,17 +1492,14 @@ function initClickableHearts() {
       }
     });
   });
-
-  console.log(`✅ Инициализировано ${totalHearts} кликабельных сердечек`);
 }
 
 let isTextChanged = false;
 
-// ===== ФУНКЦИЯ ДЛЯ СМЕНЫ КАРТИНКИ ДОРОГИ =====
+// после сердечек дорожка
 function changeRoadImage() {
   const roadPicture = document.getElementById("roadPicture");
   if (!roadPicture) {
-    console.log("❌ roadPicture не найден");
     return;
   }
 
@@ -1584,32 +1507,28 @@ function changeRoadImage() {
   const img = roadPicture.querySelector("img");
 
   if (!source || !img) {
-    console.log("❌ source или img не найдены");
     return;
   }
 
   if (window.innerWidth <= 414) {
-    // Мобильная версия
+    // мобилка
     if (allHeartsCollected) {
       source.srcset = "images/mobileRoadPink.svg";
-      console.log("🔄 Меняем дорогу на mobileRoadPink.svg");
     } else {
       source.srcset = "images/mobileRoad.svg";
     }
-    // Принудительно обновляем картинку
     img.src = source.srcset;
   } else {
-    // Десктоп версия
+    // десктоп
     if (allHeartsCollected) {
       img.src = "images/road1.svg";
-      console.log("🔄 Меняем дорогу на road1.svg");
     } else {
       img.src = "images/road0.svg";
     }
   }
 }
 
-// ===== ФУНКЦИЯ ДЛЯ ПРОВЕРКИ СОБРАНЫ ЛИ ВСЕ СЕРДЕЧКИ =====
+// проверка для сердечек
 function checkAllHeartsCollected() {
   const hearts = document.querySelectorAll(
     ".heart1, .heart2, .heart3, .heart4"
@@ -1627,7 +1546,6 @@ function checkAllHeartsCollected() {
 
   if (allHeartsCollected && !wasCollected) {
     changeRoadImage();
-    console.log("❤️ Все сердечки собраны! Дорога меняется на розовую");
   }
 
   return allHeartsCollected;
@@ -1644,7 +1562,7 @@ if (modelViewer) {
   });
 }
 
-// ===== ГЛАВНАЯ ФУНКЦИЯ =====
+// функция
 window.addEventListener("load", function () {
   const data6 = document.querySelector(".data6");
   if (data6) {
@@ -1674,14 +1592,10 @@ window.addEventListener("load", function () {
     initSliders();
     initClickableHearts();
 
-    // Проверяем состояние при загрузке
     setTimeout(() => {
       checkAllHeartsCollected();
     }, 1000);
-
-    console.log("🎉 Все системы запущены!");
   }, 500);
 
-  // Слушаем изменение размера окна
   window.addEventListener("resize", changeRoadImage);
 });
