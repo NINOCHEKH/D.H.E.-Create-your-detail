@@ -221,6 +221,8 @@
     position: relative;
     min-height: 100vh;
     padding-bottom: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
   }
 }
 
@@ -346,6 +348,7 @@
   .slider-bottom-text1,
   .slider-bottom-text1-2 {
     top: 2vw;
+    transform: scale(0.9);
   }
   .slider {
     top: 90.2vw;
@@ -364,6 +367,7 @@
   .slider-bottom-text2,
   .slider-bottom-text2-2 {
     top: 2vw;
+    transform: scale(0.9);
   }
   .slider2 {
     top: 113vw;
@@ -382,6 +386,13 @@
   .slider-bottom-text3,
   .slider-bottom-text3-2 {
     top: 2vw;
+    transform: scale(0.9);
+  }
+  .slider-bottom-text1,
+  .slider-bottom-text2,
+  .slider-bottom-text3 {
+    left: 0vw;
+    transform: scale(0.8);
   }
   .slider3 {
     top: 136vw;
@@ -419,6 +430,35 @@
     transform: scale(2.5);
     top: 63vw;
     left: 68.5vw;
+  }
+
+  /* стрелки с анимацией */
+  .arrow1 img,
+  .arrow2 img,
+  .arrow3 img {
+    transform: scale(2.1);
+  }
+
+  .arrow1 {
+    top: 20.6vw;
+    left: 25.8vw;
+  }
+  .arrow2 {
+    top: 34.6vw;
+    left: 50.3vw;
+  }
+  .arrow3 {
+    top: 27.3vw;
+    left: 51.3vw;
+  }
+
+  .data,
+  .data2,
+  .data3,
+  .data4,
+  .data5,
+  .data6 {
+    display: none;
   }
 
   .basement {
@@ -498,6 +538,7 @@
     background-color: #929292;
     z-index: 10;
   }
+
   .Third {
     position: absolute;
     top: 270vw;
@@ -515,9 +556,64 @@
   }
 
   .NOTI-004 {
-    top: 21vw;
-    left: 50vw;
-    transform: scale(1.7);
+    top: 22vw;
+    left: 51vw;
+    transform: scale(2);
+  }
+
+  .PROTOTYPE {
+    top: 1vw;
+    left: 8vw;
+    transform: scale(2.3);
+  }
+
+  .PROTOTYPE2 {
+    top: 5.3vw;
+    left: -1.6vw;
+    transform: scale(1.6);
+  }
+
+  .PROTOTYPE3 {
+    top: 1vw;
+    left: -3.9vw;
+    transform: scale(1.6);
+  }
+
+  .wordsThirdSection {
+    position: absolute;
+    top: 5vw;
+    left: 0;
+    transform: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2vw;
+    width: 100%;
+    z-index: 15;
+  }
+
+  /* HUMANIZATION - можно дополнительно настроить */
+  .HUMANIZATION {
+    position: relative;
+    left: -18.5vw;
+    top: -1.4vw;
+    margin-bottom: 1vw;
+    transform: scale(2.5);
+  }
+
+  /* TakeItHumanization */
+  .TakeItHumanization {
+    transform: scale(1.8);
+    margin-left: -13vw;
+    margin-top: -1.2vw;
+  }
+
+  /* TakeItHumanizationNumber */
+  .TakeItHumanizationNumber {
+    transform: scale(1.8);
+    margin-left: 64vw;
+    margin-top: -8.4vw;
   }
 
   .heart1,
@@ -593,39 +689,41 @@
   .three-d-section {
     position: absolute;
     top: 380vw;
-    left: 13vw;
-    right: 0;
-    width: 80%;
-    z-index: 20;
-    padding: 40px 20px;
+    width: 105vw;
     box-sizing: border-box;
     pointer-events: none;
-    transform: scale(1.16); /* ДОБАВЛЕНО */
-    transform-origin: top center; /* ДОБАВЛЕНО */
+    transform: scale(1); /* Еще больше увеличиваем масштаб */
+    transform-origin: top center;
+    left: 0vw;
+    z-index: -10;
   }
 
   .basement {
-    top: 460vw;
+    top: 465vw;
     transform: scale(3.1 4); /* ДОБАВЛЕНО */
     transform-origin: top center; /* ДОБАВЛЕНО */
   }
   .lineBasement {
-    width: 70vw;
+    width: 78vw;
     top: 19vw;
-    left: 17.5vw;
+    left: 13vw;
   }
   .basement-words {
     display: none;
   }
 
   .basement-data8 {
-    top: 17.6vw;
+    top: 17vw;
     left: 18vw;
+    z-index: 100000;
+    transform: scale(1.6);
   }
 
   .basement-data8-1 {
-    top: 20.2vw;
-    left: 67.6vw;
+    top: 21.2vw;
+    left: 67vw;
+    z-index: 100000;
+    transform: scale(1.6);
   }
 
   .backBasement {
