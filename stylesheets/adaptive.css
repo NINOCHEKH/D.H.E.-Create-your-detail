@@ -3,8 +3,10 @@
     box-sizing: border-box;
   }
   .header {
+    position: absolute;
     top: 24.5vw;
-    left: 40.7vw;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
 
@@ -38,12 +40,14 @@
   }
 
   .stage {
-    max-height: 330vw; /* Ограничиваем высоту */
+    max-height: 330vw;
     overflow: hidden;
   }
   .header {
     top: 28.5vw;
     left: 30.9vw;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .logo {
@@ -62,7 +66,7 @@
     justify-content: center;
     z-index: 100;
     transform: scale(1.2);
-    transform-origin: center top; /* Масштабируем от верхнего центра */
+    transform-origin: center top;
   }
 
   .library {
@@ -81,8 +85,8 @@
 
   /* экран подтверждения */
   .overlay {
-    justify-content: center; /* ДОБАВЛЕНО */
-    align-items: center; /* ДОБАВЛЕНО */
+    justify-content: center;
+    align-items: center;
   }
 
   .overlay.active {
@@ -175,7 +179,7 @@
       transform: translate(3vw, 4.3vw);
     }
     9% {
-      transform: translate(-70vw, 4.3vw); /* Меньше сдвиг */
+      transform: translate(-70vw, 4.3vw);
     }
     18% {
       transform: translate(-75vw, 1vw);
@@ -217,14 +221,14 @@
     padding: 40px 20px;
     box-sizing: border-box;
     pointer-events: none;
-    transform: scale(1.16); /* ДОБАВЛЕНО */
-    transform-origin: top center; /* ДОБАВЛЕНО */
+    transform: scale(1.16);
+    transform-origin: top center;
   }
 
   .basement {
     top: 340vw;
-    transform: scale(1.1); /* ДОБАВЛЕНО */
-    transform-origin: top center; /* ДОБАВЛЕНО */
+    transform: scale(1.1);
+    transform-origin: top center;
   }
 
   body {
@@ -262,6 +266,8 @@
   .header {
     top: 25.5vw;
     left: 23.4vw;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .logo {
