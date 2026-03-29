@@ -23,22 +23,6 @@ body {
   overflow-y: auto;
 }
 
-/* body::before {
-  content: "";
-  position: absolute;
-  justify-content: center;
-  align-items: center;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 615%;
-  background-image: url("../images/pic.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  opacity: 0.3;
-  z-index: -1;
-} */
-
 /* хед */
 .header {
   position: absolute;
@@ -141,6 +125,42 @@ body {
 .top1 {
   height: 10.2vw;
   display: flex;
+}
+
+.ProtoIMG {
+  position: absolute;
+  width: 4.7vw;
+  top: 5vw;
+  left: 22.5vw;
+  animation: rotateProto1 2s linear infinite;
+  transform-origin: center center;
+}
+
+.ProtoIMG2 {
+  position: absolute;
+  width: 4.7vw;
+  top: 5.5vw;
+  left: 22.5vw;
+  animation: rotateProto2 1s linear infinite;
+  transform-origin: center center;
+}
+
+@keyframes rotateProto1 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotateProto2 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .words {
@@ -1729,7 +1749,7 @@ body.no-scroll {
   border-radius: 3vw;
 }
 
-/* ===== БЕЛЫЕ ПОЛЗУНКИ ===== */
+/* белые ползунки */
 .slider-container {
   position: absolute;
   z-index: 105;
@@ -1801,7 +1821,7 @@ body.no-scroll {
   z-index: 110;
 }
 
-/* Стили для заблокированного ползунка */
+/* заблокированный ползунок */
 .slider-thumb.disabled {
   cursor: not-allowed !important;
   opacity: 0.5;
@@ -1871,7 +1891,6 @@ body.no-scroll {
   z-index: -2;
 }
 
-/* Текст над изображением */
 .wordsThirdSection {
   position: absolute;
   top: 1.2vw;
@@ -1913,7 +1932,32 @@ body.no-scroll {
   margin-left: 14.4vw;
 }
 
-/* Изображение - как в Second */
+.HeartIMG {
+  position: absolute;
+  width: 7vw;
+  top: 5.2vw;
+  left: 4.3vw;
+}
+.HeartIMG2 {
+  position: absolute;
+  width: 8.5vw;
+  top: 6.2vw;
+  left: 3.6vw;
+  animation: HEARTWobble 2s ease-in-out infinite alternate;
+  transform-origin: center center;
+}
+
+@keyframes HEARTWobble {
+  0%,
+  100% {
+    transform: rotate(16deg);
+  }
+
+  75% {
+    transform: rotate(-18deg);
+  }
+}
+
 .interface3-image {
   position: absolute;
   top: 0vw;
@@ -1978,7 +2022,6 @@ body.no-scroll {
   z-index: 1;
 }
 
-/* road0 - самый нижний слой */
 .road0 {
   width: 86vw;
   display: block;
@@ -1989,7 +2032,6 @@ body.no-scroll {
   transition: opacity 0.5s ease;
 }
 
-/* Контейнер heart1 - над road0, под элементами Third */
 .heart1,
 .heart2,
 .heart3,
@@ -2012,7 +2054,6 @@ body.no-scroll {
   display: block;
 }
 
-/* Второе сердечко - позиционируется относительно heart1 */
 .heart2SVG,
 .heart2-2SVG,
 .heart3-2SVG,
@@ -2047,7 +2088,6 @@ body.no-scroll {
   animation-delay: 6s;
 }
 
-/* Анимация движения вверх-вниз */
 @keyframes floatUpDown {
   0% {
     transform: translateY(0);
@@ -2060,7 +2100,6 @@ body.no-scroll {
   }
 }
 
-/* Основная анимация движения heart1 */
 @keyframes heartMove {
   0% {
     transform: translate(-4vw, 0);
@@ -2100,7 +2139,6 @@ body.no-scroll {
   }
 }
 
-/* Анимация для появления текста */
 @keyframes fadeInText {
   0% {
     opacity: 0;
@@ -2112,14 +2150,12 @@ body.no-scroll {
   }
 }
 
-/* Стили для NOTI-004 с анимацией */
 .NOTI-004-top,
 .NOTI-004-mid,
 .NOTI-004-bottom {
   transition: all 0.3s ease;
 }
 
-/* Стили для road0 с анимацией */
 .road0 {
   width: 86vw;
   display: block;
@@ -2130,7 +2166,6 @@ body.no-scroll {
   transition: opacity 0.5s ease;
 }
 
-/* Стили для кликабельных сердечек */
 .heart1,
 .heart2,
 .heart3,
@@ -2148,12 +2183,10 @@ body.no-scroll {
   transform: scale(1.05);
 }
 
-/* Анимация для squarePink */
 .squarePink {
   transition: background 0.5s ease;
 }
 
-/* 3D секция */
 .three-d-section {
   position: absolute;
   top: 253vw;
@@ -2163,12 +2196,9 @@ body.no-scroll {
   z-index: 20;
   padding: 40px 20px;
   box-sizing: border-box;
-  pointer-events: none; /* Вся секция не кликабельна */
+  pointer-events: none;
 }
 
-/* Контейнер рамки */
-
-/* Рамка - декоративная, некликабельная */
 .three-d-frame {
   position: relative;
   width: 100%;
@@ -2177,10 +2207,9 @@ body.no-scroll {
   border-radius: 1vw;
   padding: 1px;
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-  pointer-events: none; /* Рамка не кликабельна */
+  pointer-events: none;
 }
 
-/* Внутренний контент - кликабельный */
 .three-d-content {
   position: relative;
   width: 100%;
@@ -2231,7 +2260,6 @@ model-viewer {
   width: 0%;
 }
 
-/* Центрируем circleBasement */
 .circleBasement,
 .circleBasement1,
 .circleBasement2,
@@ -2257,7 +2285,6 @@ model-viewer {
   animation: rotate 3s linear infinite;
 }
 
-/* Центрируем small-circleBasement */
 .small-circleBasement {
   position: absolute;
   height: 10vw;
@@ -2268,7 +2295,6 @@ model-viewer {
   z-index: 6;
 }
 
-/* Анимация вращения */
 @keyframes rotate {
   from {
     transform: translate(-50%, -50%) rotate(0deg);
@@ -2278,7 +2304,6 @@ model-viewer {
   }
 }
 
-/* lineBasement и backBasement остаются без изменений */
 .lineBasement {
   position: absolute;
   width: 71vw;
@@ -2288,7 +2313,6 @@ model-viewer {
   z-index: 4;
 }
 
-/* Общие стили для всех элементов */
 .basement-data,
 .basement-data2,
 .basement-data3,

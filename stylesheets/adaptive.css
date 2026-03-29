@@ -1,3 +1,13 @@
+@media (max-width: 2200px) {
+  * {
+    box-sizing: border-box;
+  }
+  .header {
+    top: 24.5vw;
+    left: 40.7vw;
+  }
+}
+
 @media (max-width: 768px) {
   * {
     box-sizing: border-box;
@@ -280,6 +290,11 @@
     height: 14.2vw;
   }
 
+  .ProtoIMG,
+  .ProtoIMG2 {
+    display: none;
+  }
+
   .circle1,
   .circle2,
   .circle3,
@@ -405,13 +420,13 @@
   .slider__prev2,
   .slider__prev3 {
     margin-right: -1vw;
-    transform: translateY(-0.5vw); /* отступ справа от левой стрелки */
+    transform: translateY(-0.5vw);
   }
   .slider__next,
   .slider__next2,
   .slider__next3 {
     margin-left: -1vw;
-    transform: translateY(-0.5vw); /* отступ справа от левой стрелки */
+    transform: translateY(-0.5vw);
   }
 
   .square1 {
@@ -477,17 +492,17 @@
     font-size: 2.3vw;
     white-space: nowrap;
     width: auto;
-    display: flex; /* меняем с inline-block на flex */
-    align-items: center; /* центрируем по вертикали */
-    justify-content: center; /* центрируем по горизонтали */
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    line-height: 1; /* убираем лишний межстрочный интервал */
+    line-height: 1;
   }
 
   /* экран подтверждения */
   .overlay {
-    justify-content: center; /* ДОБАВЛЕНО */
-    align-items: center; /* ДОБАВЛЕНО */
+    justify-content: center;
+    align-items: center;
   }
 
   .overlay.active {
@@ -593,7 +608,7 @@
     z-index: 15;
   }
 
-  /* HUMANIZATION - можно дополнительно настроить */
+  /* HUMANIZATION  */
   .HUMANIZATION {
     position: relative;
     left: -18.5vw;
@@ -602,14 +617,12 @@
     transform: scale(2.5);
   }
 
-  /* TakeItHumanization */
   .TakeItHumanization {
     transform: scale(1.8);
     margin-left: -13vw;
     margin-top: -1.2vw;
   }
 
-  /* TakeItHumanizationNumber */
   .TakeItHumanizationNumber {
     transform: scale(1.8);
     margin-left: 64vw;
@@ -624,7 +637,6 @@
     transform-origin: center;
   }
 
-  /* Задержки для каждого сердечка */
   .heart1 {
     animation-delay: 0s;
   }
@@ -677,7 +689,20 @@
     }
   }
 
-  /* Внутренние картинки не должны иметь анимации */
+  .HeartIMG {
+    width: 7.8vw;
+    top: 10.5vw;
+    left: 25.3vw;
+  }
+  .HeartIMG2 {
+    position: absolute;
+    width: 9.5vw;
+    top: 11.6vw;
+    left: 24.6vw;
+    animation: HEARTWobble 2s ease-in-out infinite alternate;
+    transform-origin: center center;
+  }
+
   .heart1 img,
   .heart2 img,
   .heart3 img,
@@ -692,16 +717,16 @@
     width: 105vw;
     box-sizing: border-box;
     pointer-events: none;
-    transform: scale(1); /* Еще больше увеличиваем масштаб */
+    transform: scale(1);
     transform-origin: top center;
-    left: 0vw;
+    left: -2.6vw;
     z-index: -10;
   }
 
   .basement {
     top: 465vw;
-    transform: scale(3.1 4); /* ДОБАВЛЕНО */
-    transform-origin: top center; /* ДОБАВЛЕНО */
+    transform: scale(3.1 4);
+    transform-origin: top center;
   }
   .lineBasement {
     width: 78vw;
