@@ -943,7 +943,7 @@ body {
   cursor: pointer;
 }
 
-/* Контейнер для сохраненных картинок */
+/* контейнер для сохраненных картинок */
 .saved-items-container {
   position: absolute;
   top: 3.5vw;
@@ -1481,7 +1481,6 @@ body.no-scroll {
   }
 }
 
-/* Круги для кликов */
 .circle-click1,
 .circle-click2,
 .circle-click3,
@@ -1552,7 +1551,6 @@ body.no-scroll {
   transform: scale(1.1);
 }
 
-/* Позиции кругов */
 .circle-click1 {
   left: 45.6%;
 }
