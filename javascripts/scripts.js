@@ -1168,7 +1168,6 @@ function initClickableCircles() {
   updateCounter();
 }
 
-// ===== УПРАВЛЕНИЕ КАРТИНКАМИ ЧЕРЕЗ БЕЛЫЕ ПОЛЗУНКИ =====
 function initSliders() {
   function getValueFromMouse(e, track, min, max) {
     const rect = track.getBoundingClientRect();
